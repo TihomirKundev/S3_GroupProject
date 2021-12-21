@@ -8,25 +8,19 @@ namespace Project
 {
     class StudentAuthority
     {
-        private UploadStudentData studentAuthority = new UploadStudentData();
+        private readonly UploadStudentData studentAuthority = new UploadStudentData();
         private const string UPPER_CAES = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string NUMBERS = "123456789";
         private const string SPECIALS = @"!@£$%^&*()#€";
+        public List<User> AllUsersData { get; private set; }
         public StudentAuthority()
         {
-            allUsersData = studentAuthority.AllUsersCheck();
-        }
-        
-
-        public List<User> allUsersData
-        {
-            get;
-            private set;
+            AllUsersData = studentAuthority.AllUsersCheck();
         }
         public void ModifyUsersData(string option, User user)
         {
             studentAuthority.ModifyUsersData(option, user);
-            allUsersData = studentAuthority.AllUsersCheck();
+            AllUsersData = studentAuthority.AllUsersCheck();
         }
         public string GeneratePassword(int passwordSize)
         {

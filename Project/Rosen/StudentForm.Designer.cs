@@ -82,7 +82,7 @@ namespace Project
             this.logOutBtn.TabIndex = 0;
             this.logOutBtn.Text = "Log out";
             this.logOutBtn.UseVisualStyleBackColor = true;
-            this.logOutBtn.Click += new System.EventHandler(this.logOutBtn_Click);
+            this.logOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
             // 
             // helloUserLabel
             // 
@@ -104,7 +104,7 @@ namespace Project
             this.userInterface.SelectedIndex = 0;
             this.userInterface.Size = new System.Drawing.Size(935, 367);
             this.userInterface.TabIndex = 7;
-            this.userInterface.SelectedIndexChanged += new System.EventHandler(this.changeDataGrid);
+            this.userInterface.SelectedIndexChanged += new System.EventHandler(this.ChangeDataGrid);
             // 
             // tabPage1
             // 
@@ -149,7 +149,7 @@ namespace Project
             this.sundayBtn.Tag = "scheduleForUser";
             this.sundayBtn.Text = "Nothing";
             this.sundayBtn.UseVisualStyleBackColor = true;
-            this.sundayBtn.Click += new System.EventHandler(this.sundayBtn_Click);
+            this.sundayBtn.Click += new System.EventHandler(this.SundayBtn_Click);
             // 
             // saturdayBtn
             // 
@@ -160,7 +160,7 @@ namespace Project
             this.saturdayBtn.Tag = "scheduleForUser";
             this.saturdayBtn.Text = "Nothing";
             this.saturdayBtn.UseVisualStyleBackColor = true;
-            this.saturdayBtn.Click += new System.EventHandler(this.saturdayBtn_Click);
+            this.saturdayBtn.Click += new System.EventHandler(this.SaturdayBtn_Click);
             // 
             // mondayBtn
             // 
@@ -171,7 +171,7 @@ namespace Project
             this.mondayBtn.Tag = "scheduleForUser";
             this.mondayBtn.Text = "Nothing";
             this.mondayBtn.UseVisualStyleBackColor = true;
-            this.mondayBtn.Click += new System.EventHandler(this.mondayBtn_Click);
+            this.mondayBtn.Click += new System.EventHandler(this.MondayBtn_Click);
             // 
             // label7
             // 
@@ -192,7 +192,7 @@ namespace Project
             this.tuesdayBtn.Tag = "scheduleForUser";
             this.tuesdayBtn.Text = "Nothing";
             this.tuesdayBtn.UseVisualStyleBackColor = true;
-            this.tuesdayBtn.Click += new System.EventHandler(this.tuesdayBtn_Click);
+            this.tuesdayBtn.Click += new System.EventHandler(this.TuesdayBtn_Click);
             // 
             // label4
             // 
@@ -213,7 +213,7 @@ namespace Project
             this.wednesdayBtn.Tag = "scheduleForUser";
             this.wednesdayBtn.Text = "Nothing";
             this.wednesdayBtn.UseVisualStyleBackColor = true;
-            this.wednesdayBtn.Click += new System.EventHandler(this.wednesdayBtn_Click);
+            this.wednesdayBtn.Click += new System.EventHandler(this.WednesdayBtn_Click);
             // 
             // label6
             // 
@@ -234,7 +234,7 @@ namespace Project
             this.thursdayBtn.Tag = "scheduleForUser";
             this.thursdayBtn.Text = "Nothing";
             this.thursdayBtn.UseVisualStyleBackColor = true;
-            this.thursdayBtn.Click += new System.EventHandler(this.thursdayBtn_Click);
+            this.thursdayBtn.Click += new System.EventHandler(this.ThursdayBtn_Click);
             // 
             // label5
             // 
@@ -255,7 +255,7 @@ namespace Project
             this.fridayBtn.Tag = "scheduleForUser";
             this.fridayBtn.Text = "Nothing";
             this.fridayBtn.UseVisualStyleBackColor = true;
-            this.fridayBtn.Click += new System.EventHandler(this.fridayBtn_Click);
+            this.fridayBtn.Click += new System.EventHandler(this.FridayBtn_Click);
             // 
             // label8
             // 
@@ -309,7 +309,7 @@ namespace Project
             this.sendComplaint.Tag = "complaint";
             this.sendComplaint.Text = "Send Complaint";
             this.sendComplaint.UseVisualStyleBackColor = true;
-            this.sendComplaint.Click += new System.EventHandler(this.sendComplaint_Click);
+            this.sendComplaint.Click += new System.EventHandler(this.SendComplaint_Click);
             // 
             // complaintTxtBox
             // 
@@ -391,7 +391,7 @@ namespace Project
             this.sendAgreement.Tag = "createAgr";
             this.sendAgreement.Text = "Send the agreement";
             this.sendAgreement.UseVisualStyleBackColor = true;
-            this.sendAgreement.Click += new System.EventHandler(this.sendAgreement_Click);
+            this.sendAgreement.Click += new System.EventHandler(this.SendAgreement_Click);
             // 
             // agreementTxtBox
             // 
@@ -442,7 +442,7 @@ namespace Project
             this.iApproveBtn.Text = "I approve";
             this.iApproveBtn.UseVisualStyleBackColor = true;
             this.iApproveBtn.Visible = false;
-            this.iApproveBtn.Click += new System.EventHandler(this.iApproveBtn_Click);
+            this.iApproveBtn.Click += new System.EventHandler(this.IApproveBtn_Click);
             // 
             // agrForUserBtn
             // 
@@ -452,7 +452,7 @@ namespace Project
             this.agrForUserBtn.TabIndex = 42;
             this.agrForUserBtn.Text = "Agreements for me";
             this.agrForUserBtn.UseVisualStyleBackColor = true;
-            this.agrForUserBtn.Click += new System.EventHandler(this.agrForUserBtn_Click);
+            this.agrForUserBtn.Click += new System.EventHandler(this.AgrForUserBtn_Click);
             // 
             // iDontApproveBtn
             // 
@@ -463,7 +463,7 @@ namespace Project
             this.iDontApproveBtn.Text = "I dont approve";
             this.iDontApproveBtn.UseVisualStyleBackColor = true;
             this.iDontApproveBtn.Visible = false;
-            this.iDontApproveBtn.Click += new System.EventHandler(this.iDontApproveBtn_Click);
+            this.iDontApproveBtn.Click += new System.EventHandler(this.IDontApproveBtn_Click);
             // 
             // agrUserMadeBtn
             // 
@@ -473,7 +473,7 @@ namespace Project
             this.agrUserMadeBtn.TabIndex = 41;
             this.agrUserMadeBtn.Text = "Agreement that i made";
             this.agrUserMadeBtn.UseVisualStyleBackColor = true;
-            this.agrUserMadeBtn.Click += new System.EventHandler(this.agrUserMadeBtn_Click);
+            this.agrUserMadeBtn.Click += new System.EventHandler(this.AgrUserMadeBtn_Click);
             // 
             // createAgrBtn
             // 
@@ -483,7 +483,7 @@ namespace Project
             this.createAgrBtn.TabIndex = 40;
             this.createAgrBtn.Text = "Create agreement";
             this.createAgrBtn.UseVisualStyleBackColor = true;
-            this.createAgrBtn.Click += new System.EventHandler(this.createAgrBtn_Click);
+            this.createAgrBtn.Click += new System.EventHandler(this.CreateAgrBtn_Click);
             // 
             // tableInfo
             // 
@@ -497,7 +497,7 @@ namespace Project
             this.tableInfo.RowTemplate.Height = 28;
             this.tableInfo.Size = new System.Drawing.Size(931, 293);
             this.tableInfo.TabIndex = 8;
-            this.tableInfo.DataSourceChanged += new System.EventHandler(this.changeBtnsVisiblitity);
+            this.tableInfo.DataSourceChanged += new System.EventHandler(this.ChangeBtnsVisiblitity);
             // 
             // StudentForm
             // 
@@ -510,7 +510,7 @@ namespace Project
             this.Controls.Add(this.logOutBtn);
             this.Name = "StudentForm";
             this.Text = "StudentForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClosingForm);
             this.userInterface.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();

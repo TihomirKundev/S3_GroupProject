@@ -10,47 +10,34 @@ namespace Project
 {
     class AdminApartment
     {
-        private UploadApartmentData uploadApartmentData = new UploadApartmentData();
-        private CheckData checkData = new CheckData();
-        private DataTable apartments, apartmentAndUsers;
+        private readonly UploadApartmentData uploadApartmentData = new UploadApartmentData();
+        private readonly CheckData checkData = new CheckData();
+        public List<Apartment> AllApartmentsData { get; private set; }
+        public List<Apartment> ApartmentsAndUser { get; private set; }
         public AdminApartment()
         {
-            allApartmentsData = uploadApartmentData.AllApartments();
-            apartmentsAndUser = uploadApartmentData.UploadDataWapartments();
-        }
-
-
-        public List<Apartment> allApartmentsData
-        {
-            get;
-            private set;
-        }
-        public List<Apartment> apartmentsAndUser
-        {
-            get;
-            private set;
+            AllApartmentsData = uploadApartmentData.AllApartments();
+            ApartmentsAndUser = uploadApartmentData.UploadDataWapartments();
         }
         public void ModifyApartmentData(string option, Apartment apartment)
         {
             uploadApartmentData.ModifyApartmentData(option, apartment);
-            allApartmentsData = uploadApartmentData.AllApartments();
-            apartmentsAndUser = uploadApartmentData.UploadDataWapartments();
+            AllApartmentsData = uploadApartmentData.AllApartments();
+            ApartmentsAndUser = uploadApartmentData.UploadDataWapartments();
         }
-        public List<String> apartmentDataInfo(int apartmentID)
+        public List<String> ApartmentDataInfo(int apartmentID)
         {
-            return uploadApartmentData.apartmentDataInfo(apartmentID);
+            return uploadApartmentData.ApartmentDataInfo(apartmentID);
         }
-        public int quantityOfRooms(Apartment apartment)
+        public int QuantityOfRooms(Apartment apartment)
         {
-            return uploadApartmentData.quantityOfRooms(apartment);
+            return uploadApartmentData.QuantityOfRooms(apartment);
         }
-   
-        
-        public List<int> addApartmentIDstoComboBox()
+        public List<int> AddApartmentIDstoComboBox()
         {
-            allApartmentsData = uploadApartmentData.AllApartments();
-            apartmentsAndUser = uploadApartmentData.UploadDataWapartments();
-            return checkData.addApartmentIDstoComboBox();
+            AllApartmentsData = uploadApartmentData.AllApartments();
+            ApartmentsAndUser = uploadApartmentData.UploadDataWapartments();
+            return checkData.AddApartmentIDstoComboBox();
         }
       
     }

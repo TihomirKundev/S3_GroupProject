@@ -127,7 +127,7 @@ namespace Project
             this.adminInterface.SelectedIndex = 0;
             this.adminInterface.Size = new System.Drawing.Size(1172, 270);
             this.adminInterface.TabIndex = 0;
-            this.adminInterface.SelectedIndexChanged += new System.EventHandler(this.changeDataGrid);
+            this.adminInterface.SelectedIndexChanged += new System.EventHandler(this.ChangeDataGrid);
             // 
             // tabPage1
             // 
@@ -222,7 +222,7 @@ namespace Project
             this.updateUserBtn.Text = "Change";
             this.updateUserBtn.UseVisualStyleBackColor = true;
             this.updateUserBtn.Visible = false;
-            this.updateUserBtn.Click += new System.EventHandler(this.updateUserBtn_Click);
+            this.updateUserBtn.Click += new System.EventHandler(this.UpdateUserBtn_Click);
             // 
             // panel1
             // 
@@ -248,7 +248,7 @@ namespace Project
             this.createUserBtn.Text = "Add";
             this.createUserBtn.UseVisualStyleBackColor = true;
             this.createUserBtn.Visible = false;
-            this.createUserBtn.Click += new System.EventHandler(this.createUserBtn_Click);
+            this.createUserBtn.Click += new System.EventHandler(this.CreateUserBtn_Click);
             // 
             // userAddApartment
             // 
@@ -377,7 +377,7 @@ namespace Project
             this.deleteUserDataBtn.TabIndex = 84;
             this.deleteUserDataBtn.Text = "Delete";
             this.deleteUserDataBtn.UseVisualStyleBackColor = true;
-            this.deleteUserDataBtn.Click += new System.EventHandler(this.deleteUserDataBtn_Click);
+            this.deleteUserDataBtn.Click += new System.EventHandler(this.DeleteUserDataBtn_Click);
             // 
             // updateUserDataBtn
             // 
@@ -387,7 +387,7 @@ namespace Project
             this.updateUserDataBtn.TabIndex = 83;
             this.updateUserDataBtn.Text = "Update";
             this.updateUserDataBtn.UseVisualStyleBackColor = true;
-            this.updateUserDataBtn.Click += new System.EventHandler(this.updateUserDataBtn_Click);
+            this.updateUserDataBtn.Click += new System.EventHandler(this.UpdateUserDataBtn_Click);
             // 
             // createUserDataBtn
             // 
@@ -397,7 +397,7 @@ namespace Project
             this.createUserDataBtn.TabIndex = 82;
             this.createUserDataBtn.Text = "Create";
             this.createUserDataBtn.UseVisualStyleBackColor = true;
-            this.createUserDataBtn.Click += new System.EventHandler(this.createUserDataBtn_Click);
+            this.createUserDataBtn.Click += new System.EventHandler(this.CreateUserDataBtn_Click);
             // 
             // tabPage2
             // 
@@ -460,7 +460,7 @@ namespace Project
             this.updateApartmentBtn.Text = "Update";
             this.updateApartmentBtn.UseVisualStyleBackColor = true;
             this.updateApartmentBtn.Visible = false;
-            this.updateApartmentBtn.Click += new System.EventHandler(this.updateApartmentBtn_Click);
+            this.updateApartmentBtn.Click += new System.EventHandler(this.UpdateApartmentBtn_Click);
             // 
             // deleteApBtn
             // 
@@ -470,7 +470,7 @@ namespace Project
             this.deleteApBtn.TabIndex = 111;
             this.deleteApBtn.Text = "Delete";
             this.deleteApBtn.UseVisualStyleBackColor = true;
-            this.deleteApBtn.Click += new System.EventHandler(this.deleteApBtn_Click);
+            this.deleteApBtn.Click += new System.EventHandler(this.DeleteApBtn_Click);
             // 
             // label10
             // 
@@ -514,7 +514,7 @@ namespace Project
             this.updateApDataBtn.TabIndex = 109;
             this.updateApDataBtn.Text = "Update";
             this.updateApDataBtn.UseVisualStyleBackColor = true;
-            this.updateApDataBtn.Click += new System.EventHandler(this.updateApDataBtn_Click);
+            this.updateApDataBtn.Click += new System.EventHandler(this.UpdateApDataBtn_Click);
             // 
             // priceNumeric
             // 
@@ -554,7 +554,7 @@ namespace Project
             this.createApBtn.TabIndex = 108;
             this.createApBtn.Text = "Create";
             this.createApBtn.UseVisualStyleBackColor = true;
-            this.createApBtn.Click += new System.EventHandler(this.createApBtn_Click);
+            this.createApBtn.Click += new System.EventHandler(this.CreateApBtn_Click);
             // 
             // label6
             // 
@@ -584,7 +584,7 @@ namespace Project
             this.createApartmentBtn.TabIndex = 106;
             this.createApartmentBtn.Text = "Add";
             this.createApartmentBtn.UseVisualStyleBackColor = true;
-            this.createApartmentBtn.Click += new System.EventHandler(this.createApartmentBtn_Click);
+            this.createApartmentBtn.Click += new System.EventHandler(this.CreateApartmentBtn_Click);
             // 
             // label7
             // 
@@ -692,7 +692,7 @@ namespace Project
             this.deleteComplaint.TabIndex = 2;
             this.deleteComplaint.Text = "Delete complaint";
             this.deleteComplaint.UseVisualStyleBackColor = true;
-            this.deleteComplaint.Click += new System.EventHandler(this.deleteComplaint_Click);
+            this.deleteComplaint.Click += new System.EventHandler(this.DeleteComplaint_Click);
             // 
             // tabPage5
             // 
@@ -726,7 +726,7 @@ namespace Project
             this.updateScheduleBtn.TabIndex = 103;
             this.updateScheduleBtn.Text = "Update";
             this.updateScheduleBtn.UseVisualStyleBackColor = true;
-            this.updateScheduleBtn.Click += new System.EventHandler(this.updateScheduleBtn_Click);
+            this.updateScheduleBtn.Click += new System.EventHandler(this.UpdateScheduleBtn_Click);
             // 
             // Job
             // 
@@ -745,7 +745,7 @@ namespace Project
             this.createScheduleBtn.TabIndex = 102;
             this.createScheduleBtn.Text = "Create";
             this.createScheduleBtn.UseVisualStyleBackColor = true;
-            this.createScheduleBtn.Click += new System.EventHandler(this.createScheduleBtn_Click);
+            this.createScheduleBtn.Click += new System.EventHandler(this.CreateScheduleBtn_Click);
             // 
             // label14
             // 
@@ -765,7 +765,7 @@ namespace Project
             this.deleteScheduleBtn.TabIndex = 101;
             this.deleteScheduleBtn.Text = "Delete";
             this.deleteScheduleBtn.UseVisualStyleBackColor = true;
-            this.deleteScheduleBtn.Click += new System.EventHandler(this.deleteScheduleBtn_Click);
+            this.deleteScheduleBtn.Click += new System.EventHandler(this.DeleteScheduleBtn_Click);
             // 
             // UserIDCB
             // 
@@ -786,7 +786,7 @@ namespace Project
             this.updateSchedule.Text = "Update";
             this.updateSchedule.UseVisualStyleBackColor = true;
             this.updateSchedule.Visible = false;
-            this.updateSchedule.Click += new System.EventHandler(this.updateSchedule_Click);
+            this.updateSchedule.Click += new System.EventHandler(this.UpdateSchedule_Click);
             // 
             // apartmentIDCB
             // 
@@ -797,7 +797,7 @@ namespace Project
             this.apartmentIDCB.Size = new System.Drawing.Size(121, 28);
             this.apartmentIDCB.TabIndex = 90;
             this.apartmentIDCB.Tag = "scheduleData";
-            this.apartmentIDCB.TextChanged += new System.EventHandler(this.addUserIds);
+            this.apartmentIDCB.TextChanged += new System.EventHandler(this.AddUserIds);
             // 
             // addScheduleBtn
             // 
@@ -807,7 +807,7 @@ namespace Project
             this.addScheduleBtn.TabIndex = 99;
             this.addScheduleBtn.Text = "Add";
             this.addScheduleBtn.UseVisualStyleBackColor = true;
-            this.addScheduleBtn.Click += new System.EventHandler(this.addScheduleBtn_Click);
+            this.addScheduleBtn.Click += new System.EventHandler(this.AddScheduleBtn_Click);
             // 
             // label15
             // 
@@ -895,7 +895,7 @@ namespace Project
             this.deleteAgrBtn.TabIndex = 2;
             this.deleteAgrBtn.Text = "Delete agreement";
             this.deleteAgrBtn.UseVisualStyleBackColor = true;
-            this.deleteAgrBtn.Click += new System.EventHandler(this.deleteAgrBtn_Click);
+            this.deleteAgrBtn.Click += new System.EventHandler(this.DeleteAgrBtn_Click);
             // 
             // tabPage7
             // 
@@ -919,12 +919,12 @@ namespace Project
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(1168, 311);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.onClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnClick);
             // 
             // adminSettings
             // 
             this.adminSettings.Enabled = true;
-            this.adminSettings.Tick += new System.EventHandler(this.adminSettings_Tick);
+            this.adminSettings.Tick += new System.EventHandler(this.AdminSettings_Tick);
             // 
             // AdminForm
             // 

@@ -10,7 +10,7 @@ namespace Project
     class UploadComplaintData
     {
         private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
-        public void sendComplaint(Complaint createComplaint)
+        public void SendComplaint(Complaint createComplaint)
         {
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();

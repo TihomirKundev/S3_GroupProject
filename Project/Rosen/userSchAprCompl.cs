@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 using System.Data;
 namespace Project
 {
-    class userSchAprCompl
+    class UserSchAprCompl
     {
-        public void sendComplaint(Complaint complaintM)
+        public void SendComplaint(Complaint complaintM)
         {
             UploadComplaintData complaint = new UploadComplaintData();
-            complaint.sendComplaint(complaintM);
+            complaint.SendComplaint(complaintM);
         }
-        public Apartment userApartment()
+        public Apartment UserApartment()
         {
             UploadApartmentData apartmentData = new UploadApartmentData();
-            return apartmentData.uploadUserApartment();
+            return apartmentData.UploadUserApartment();
         }
-        public List<Schedule> scheduleForUser()
+        public List<Schedule> ScheduleForUser()
         {
             UploadScheduleData schedule = new UploadScheduleData();
-            return schedule.schedulesForUser();
+            return schedule.SchedulesForUser();
         }
       
     }

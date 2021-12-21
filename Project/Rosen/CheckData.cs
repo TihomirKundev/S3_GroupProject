@@ -9,8 +9,8 @@ namespace Project
 {
     class CheckData
     {
-        private string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
-        private bool checkQuantityOfApartment(int id, int quantity)
+        private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
+        private bool CheckQuantityOfApartment(int id, int quantity)
         {
             bool check = false;
             int count = 0;
@@ -30,7 +30,7 @@ namespace Project
 
             return check;
         }
-        public List<int> addApartmentIDstoComboBox()
+        public List<int> AddApartmentIDstoComboBox()
         {
             List<int> ids = new List<int>();
             List<int> roomMax = new List<int>();
@@ -50,13 +50,13 @@ namespace Project
             con.Close();
             for (int i = 0; i < ids.Count; i++)
             {
-                if (checkQuantityOfApartment(ids[i], roomMax[i]) == true)
+                if (CheckQuantityOfApartment(ids[i], roomMax[i]) == true)
                     items.Add(ids[i]);
             }
             return items;
         }
 
-        public List<int> addApartmentIds()
+        public List<int> AddApartmentIds()
         {
             List<int> ids = new List<int>();
             SqlConnection con = new SqlConnection(@dataLink);
@@ -72,7 +72,7 @@ namespace Project
 
             return ids;
         }
-        public List<int> addUserIds(int addUserIds)
+        public List<int> AddUserIds(int addUserIds)
         {
             List<int> ids = new List<int>();
             SqlConnection con = new SqlConnection(@dataLink);
@@ -89,7 +89,7 @@ namespace Project
             return ids;
         }
 
-        protected internal int getQuantity(int id)
+        protected internal int GetQuantity(int id)
         {
             int quant = 0;
             SqlConnection con = new SqlConnection(@dataLink);
@@ -105,7 +105,7 @@ namespace Project
 
             return quant;
         }
-        protected internal bool checkQuantity(int id, int quantity)
+        protected internal bool CheckQuantity(int id, int quantity)
         {
             bool check = false;
             int count = 0;

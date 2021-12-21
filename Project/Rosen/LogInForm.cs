@@ -18,19 +18,19 @@ namespace Project
             logInName.Text = "group04";
             logInPassword.Text = "1234";
         }
-        public void sendMessage(string message)
+        public void SendMessage(string message)
         {
             if (message.Contains("Wrong"))
                 MessageBox.Show(message, "Error");
             
 
         }
-        private void loginBtn_Click(object sender, EventArgs e)
+        private void LoginBtn_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(logInName.Text) || !string.IsNullOrEmpty(logInPassword.Text))
             {
                 Login checkAllData = new Login();
-                checkAllData.setData(logInName.Text, logInPassword.Text);
+                checkAllData.SetData(logInName.Text, logInPassword.Text);
                 this.Visible = false ;
             }
             else
@@ -39,7 +39,7 @@ namespace Project
             }
         }
 
-        private void closeApplication(object sender, FormClosingEventArgs e)
+        private void CloseApplication(object sender, FormClosingEventArgs e)
         {
             System.Environment.Exit(1);
             System.Windows.Forms.Application.Exit();

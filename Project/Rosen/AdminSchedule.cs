@@ -8,24 +8,20 @@ namespace Project
 {
     class AdminSchedule
     {
-        private UploadScheduleData uploadScheduleData = new UploadScheduleData();
+        private readonly UploadScheduleData uploadScheduleData = new UploadScheduleData();
+        public List<Schedule> GetSchedules { get; private set; }
         public AdminSchedule()
         {
-            getSchedules = uploadScheduleData.AllSchedules();
-        }
-        public List<Schedule> getSchedules
-        {
-            get;
-            private set;
+            GetSchedules = uploadScheduleData.AllSchedules();
         }
         public void ModifyUsersData(string option, Schedule schedule)
         {
             uploadScheduleData.ModifyScheduleData(option,schedule);
-            getSchedules = uploadScheduleData.AllSchedules();
+            GetSchedules = uploadScheduleData.AllSchedules();
         }
-        public List<String> scheduleDataInfo(int id)
+        public List<String> ScheduleDataInfo(int id)
         {
-            return uploadScheduleData.showDataInComboBoxesForSchedule(id);
+            return uploadScheduleData.ShowDataInComboBoxesForSchedule(id);
         }
     }
 }

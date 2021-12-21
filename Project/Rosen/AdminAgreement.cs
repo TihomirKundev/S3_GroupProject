@@ -8,22 +8,16 @@ namespace Project
 {
     class AdminAgreement
     {
-        private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
-        private UploadAgreementData agreements = new UploadAgreementData();
-        private DataTable agreementsDataTable;
+        private readonly UploadAgreementData agreements = new UploadAgreementData();
+        public List<Agreement> GetAgreements { get; private set; }
         public AdminAgreement()
         {
-            getAgreements = agreements.allAgreements();
+            GetAgreements = agreements.AllAgreements();
         }
-        public List<Agreement> getAgreements
+        public void DeleteAgreement(Agreement deleteAgr)
         {
-            get;
-            private set;
-        }
-        public void deleteAgreement(Agreement deleteAgr)
-        {
-            agreements.deleteStudentAgreement(deleteAgr);
-            getAgreements = agreements.allAgreements();
+            agreements.DeleteStudentAgreement(deleteAgr);
+            GetAgreements = agreements.AllAgreements();
         }
     }
 }

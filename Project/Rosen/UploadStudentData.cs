@@ -42,21 +42,21 @@ namespace Project
             if (option == "Insert")
             {
                 cmd = new SqlCommand("insert into UsersData values (@Username,@Password, @Apartment)", con);
-                cmd.Parameters.AddWithValue("@Username", user.userEmail);
-                cmd.Parameters.AddWithValue("@Password", user.userPassword);
-                cmd.Parameters.AddWithValue("@Apartment", user.userApartmentID);
+                cmd.Parameters.AddWithValue("@Username", user.UserEmail);
+                cmd.Parameters.AddWithValue("@Password", user.UserPassword);
+                cmd.Parameters.AddWithValue("@Apartment", user.UserApartmentID);
             }else if(option == "Update")
             {
-                cmd = new SqlCommand("Update UsersData set Username =@Username,Password=@Password,Apartment=@Apartment where ID='" + @user.userIdentity+ "'", con);
-                cmd.Parameters.AddWithValue("@Username", user.userEmail);
-                cmd.Parameters.AddWithValue("@Password", user.userPassword);
-                cmd.Parameters.AddWithValue("@Apartment", user.userApartmentID);
-                cmd.Parameters.AddWithValue("@ID", user.userIdentity);
+                cmd = new SqlCommand("Update UsersData set Username =@Username,Password=@Password,Apartment=@Apartment where ID='" + @user.UserIdentity+ "'", con);
+                cmd.Parameters.AddWithValue("@Username", user.UserEmail);
+                cmd.Parameters.AddWithValue("@Password", user.UserPassword);
+                cmd.Parameters.AddWithValue("@Apartment", user.UserApartmentID);
+                cmd.Parameters.AddWithValue("@ID", user.UserIdentity);
             }
             else
             {
-                cmd = new SqlCommand("DELETE FROM UsersData WHERE ID = '"+user.userIdentity+"'", con);
-                cmd.Parameters.AddWithValue("@ID", user.userIdentity);
+                cmd = new SqlCommand("DELETE FROM UsersData WHERE ID = '"+user.UserIdentity+"'", con);
+                cmd.Parameters.AddWithValue("@ID", user.UserIdentity);
             }
             cmd.ExecuteNonQuery();
             con.Close();

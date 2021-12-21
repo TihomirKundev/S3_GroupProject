@@ -105,7 +105,7 @@
     <Compile Include="Complaint.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="StudentAuthority.cs" />
-    <Compile Include="userSchAprCompl.cs" />
+    <Compile Include="UserSchAprCompl.cs" />
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>

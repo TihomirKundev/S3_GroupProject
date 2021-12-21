@@ -12,17 +12,16 @@ namespace Project
 {
     public partial class AdminForm : Form
     {
-        private StudentAuthority studentAuthority = new StudentAuthority();
-        private AdminApartment adminApartments = new AdminApartment();
-        private AdminComplaint adminComplaints = new AdminComplaint();
-        private AdminAgreement adminAgreements = new AdminAgreement();
-        private AdminSchedule adminSchedule = new AdminSchedule();
-        private CheckData checkData = new CheckData();
+        private readonly StudentAuthority studentAuthority = new StudentAuthority();
+        private readonly AdminApartment adminApartments = new AdminApartment();
+        private readonly AdminComplaint adminComplaints = new AdminComplaint();
+        private readonly AdminAgreement adminAgreements = new AdminAgreement();
+        private readonly AdminSchedule adminSchedule = new AdminSchedule();
+        private readonly CheckData checkData = new CheckData();
         public AdminForm()
         {
             InitializeComponent();
-            dataGridView1.DataSource = studentAuthority.allUsersData.ToList();
-
+            dataGridView1.DataSource = studentAuthority.AllUsersData.ToList();
         }
         private void ShowCreateUser(bool change)
         {
@@ -57,7 +56,7 @@ namespace Project
             //addScheduleBtn.Visible = change;
             //updateSchedule.Visible = change;
         }
-        private void visibleFalse()
+        private void VisibleFalse()
         {
             ShowCreateUser(false);
             ShowUpdateUser(false);
@@ -66,13 +65,13 @@ namespace Project
             TurnOffScheduleBtns(false);
         }
         #region Users
-        private void updateUserDataBtn_Click(object sender, EventArgs e)
+        private void UpdateUserDataBtn_Click(object sender, EventArgs e)
         {
             availableApartments.DataSource = null;
-            availableApartments.DataSource = adminApartments.addApartmentIDstoComboBox();
-            comboBoxApartIds();
+            availableApartments.DataSource = adminApartments.AddApartmentIDstoComboBox();
+            ComboBoxApartIds();
             if (oldData.Visible == false)
-                visibleFalse();
+                VisibleFalse();
             if (dataGridView1.Rows.Count > 0)
             {
                 ShowUpdateUser(true);
@@ -82,24 +81,23 @@ namespace Project
                 MessageBox.Show("There is no data");
         }
 
-        private void createUserBtn_Click(object sender, EventArgs e)
+        private void CreateUserBtn_Click(object sender, EventArgs e)
         {
-            int check = 0;
             Random rnd = new Random();
             if (String.IsNullOrEmpty(userAddApartment.Text) == false)
             {
                 if (!String.IsNullOrEmpty(firstName.Text) || !String.IsNullOrEmpty(secondName.Text))
                 {
-                    if (!int.TryParse(firstName.Text.Substring(0, 1), out check))
+                    if (!int.TryParse(firstName.Text.Substring(0, 1), out _))
                     {
-                        
+
                         string email = firstName.Text.Substring(0, 1) + "." + secondName.Text + "@studentHousing.mail";
                         string password = studentAuthority.GeneratePassword(rnd.Next(7, 12));
                         User createUser = new User(0, email, password, Convert.ToInt32(userAddApartment.Text));
                         studentAuthority.ModifyUsersData("Insert", createUser);
-                        dataGridView1.DataSource = studentAuthority.allUsersData.ToList();
+                        dataGridView1.DataSource = studentAuthority.AllUsersData.ToList();
                         MessageBox.Show($"You successfully created user with email: {email}");
-                        comboBoxApartIds();
+                        ComboBoxApartIds();
                     }
                     else
                         MessageBox.Show("First name cant start with numbers and the max characters for first or last name is 20!");
@@ -111,47 +109,47 @@ namespace Project
                 MessageBox.Show("No available apartments!!");
         }
 
-        private void deleteUserDataBtn_Click(object sender, EventArgs e)
+        private void DeleteUserDataBtn_Click(object sender, EventArgs e)
         {
             availableApartments.Visible = false;
 
             if (dataGridView1.Rows.Count > 0)
             {
-                List<User> users = studentAuthority.allUsersData;
+                List<User> users = studentAuthority.AllUsersData;
                 studentAuthority.ModifyUsersData("Delete", (users[dataGridView1.CurrentRow.Index]));
                 users.RemoveAt(dataGridView1.CurrentRow.Index);
                 dataGridView1.DataSource = users.ToList();
-                comboBoxApartIds();
+                ComboBoxApartIds();
                 MessageBox.Show("Successfully deleted");
             }
             else
                 MessageBox.Show("There is no data");
         }
 
-        private void createUserDataBtn_Click(object sender, EventArgs e)
+        private void CreateUserDataBtn_Click(object sender, EventArgs e)
         {
             availableApartments.Visible = false;
             if (firstName.Visible == false)
-                visibleFalse();
+                VisibleFalse();
             ShowCreateUser(true);
-            comboBoxApartIds();
+            ComboBoxApartIds();
 
 
         }
 
-        private void adminSettings_Tick(object sender, EventArgs e)
+        private void AdminSettings_Tick(object sender, EventArgs e)
         {
             if (updateUserBtn.Visible == true)
             {
                 if (changeUserName.Checked == true)
                 {
-                    oldData.Text = dataGridView1.Rows[getIndex()].Cells[1].Value.ToString();
+                    oldData.Text = dataGridView1.Rows[GetIndex()].Cells[1].Value.ToString();
                     oldOne.Text = "Old email";
                     newOne.Text = "New email";
                 }
                 if (changeUserPassword.Checked == true)
                 {
-                    oldData.Text = dataGridView1.Rows[getIndex()].Cells[2].Value.ToString();
+                    oldData.Text = dataGridView1.Rows[GetIndex()].Cells[2].Value.ToString();
                     oldOne.Text = "Old password";
                     newOne.Text = "New password";
                 }
@@ -160,7 +158,7 @@ namespace Project
 
                     newData.Visible = false;
                     availableApartments.Visible = true;
-                    oldData.Text = dataGridView1.Rows[getIndex()].Cells[3].Value.ToString();
+                    oldData.Text = dataGridView1.Rows[GetIndex()].Cells[3].Value.ToString();
                     oldOne.Text = "Old apartment";
                     newOne.Text = "New apartment";
                 }
@@ -174,20 +172,19 @@ namespace Project
             }
         }
 
-        private void updateUserBtn_Click(object sender, EventArgs e)
+        private void UpdateUserBtn_Click(object sender, EventArgs e)
         {
-            int check = 0;
-            int id = Convert.ToInt32(dataGridView1.Rows[getIndex()].Cells[0].Value);
-            string email = Convert.ToString(dataGridView1.Rows[getIndex()].Cells[1].Value);
-            string password = Convert.ToString(dataGridView1.Rows[getIndex()].Cells[2].Value);
+            int id = Convert.ToInt32(dataGridView1.Rows[GetIndex()].Cells[0].Value);
+            string email = Convert.ToString(dataGridView1.Rows[GetIndex()].Cells[1].Value);
+            string password = Convert.ToString(dataGridView1.Rows[GetIndex()].Cells[2].Value);
             int apartment=0;
-            if (dataGridView1.Rows[getIndex()].Cells[2].Value != null)
-            apartment = Convert.ToInt32(dataGridView1.Rows[getIndex()].Cells[3].Value);
+            if (dataGridView1.Rows[GetIndex()].Cells[2].Value != null)
+            apartment = Convert.ToInt32(dataGridView1.Rows[GetIndex()].Cells[3].Value);
             if (availableApartments.Visible == false)
             {
                 if (!String.IsNullOrEmpty(newData.Text))
                 {
-                    string checkName = newData.Text.Substring(0, 1);
+                    _ = newData.Text.Substring(0, 1);
                     if (newData.Text.Length < 50)
                     {
                         if (changeUserName.Checked == true)
@@ -218,28 +215,23 @@ namespace Project
                     studentAuthority.ModifyUsersData("Update", new User(id, email, password, Convert.ToInt32(availableApartments.Text)));
                     MessageBox.Show("Successfully updated");
                     availableApartments.DataSource = null;
-                    availableApartments.DataSource = adminApartments.addApartmentIDstoComboBox();
+                    availableApartments.DataSource = adminApartments.AddApartmentIDstoComboBox();
                 }
                 else
                     MessageBox.Show("There is no available apartments!", "Error");
             }
-            dataGridView1.DataSource = studentAuthority.allUsersData.ToList();
-
-
-
+            dataGridView1.DataSource = studentAuthority.AllUsersData.ToList();
         }
 
-
-
-        private void comboBoxApartIds()
+        private void ComboBoxApartIds()
         {
             userAddApartment.DataSource = null;
-            userAddApartment.DataSource = adminApartments.addApartmentIDstoComboBox();
+            userAddApartment.DataSource = adminApartments.AddApartmentIDstoComboBox();
         }
         #endregion
 
         #region Apartments
-        private void createApartmentBtn_Click(object sender, EventArgs e)
+        private void CreateApartmentBtn_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(addressAp.Text) && priceNumeric.Value != 0 &&
                  !String.IsNullOrEmpty(propertyTypeComboBox.Text) && !String.IsNullOrEmpty(interiorComboBox.Text) &&
@@ -251,10 +243,10 @@ namespace Project
                 string interior = interiorComboBox.Text;
                 int bedrooms = Convert.ToInt32(bedroomsComboBox.Text);
                 int roomsInApartment = Convert.ToInt32(roomsQuantity.Value);
-                comboBoxApartIds();
+                ComboBoxApartIds();
                 Apartment createUser = new Apartment(0,address,price,propertyType,interior,bedrooms,roomsInApartment);
                 adminApartments.ModifyApartmentData("Insert", createUser);
-                dataGridView1.DataSource = adminApartments.allApartmentsData.ToList();
+                dataGridView1.DataSource = adminApartments.AllApartmentsData.ToList();
                 dataGridView1.Columns.Remove("Email");
                 dataGridView1.Columns.Remove("ApartmentID");
                 MessageBox.Show("Succesfully added");
@@ -265,16 +257,16 @@ namespace Project
             }
         }
 
-        private void deleteApBtn_Click(object sender, EventArgs e)
+        private void DeleteApBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count > 0)
             {
-                List<Apartment> apartment= adminApartments.allApartmentsData.ToList();
+                List<Apartment> apartment= adminApartments.AllApartmentsData.ToList();
                 adminApartments.ModifyApartmentData("Delete", (apartment[dataGridView1.CurrentRow.Index]));
                 apartment.RemoveAt(dataGridView1.CurrentRow.Index);
                 dataGridView1.DataSource = apartment.ToList();
-                comboBoxApartIds();
-                dataGridView1.DataSource = adminApartments.allApartmentsData.ToList();
+                ComboBoxApartIds();
+                dataGridView1.DataSource = adminApartments.AllApartmentsData.ToList();
                 dataGridView1.Columns.Remove("Email");
                 dataGridView1.Columns.Remove("ApartmentID");
                 MessageBox.Show($"You successfully deleted this apartment");
@@ -283,22 +275,22 @@ namespace Project
                 MessageBox.Show("There is no data");
         }
 
-        private void createApBtn_Click(object sender, EventArgs e)
+        private void CreateApBtn_Click(object sender, EventArgs e)
         {
             idTxtBox.Text = "";
             if (createApartmentBtn.Visible == false)
-                visibleFalse();
+                VisibleFalse();
             createApartmentBtn.Visible = true;
             updateApartmentBtn.Visible = false;
 
         }
-        private void areYouSure()
+        private void AreYouSure()
         {
-            List<Apartment> apartment = adminApartments.allApartmentsData.ToList();
-            int quantityOfRooms = adminApartments.quantityOfRooms(apartment[dataGridView1.CurrentRow.Index]);
+            List<Apartment> apartment = adminApartments.AllApartmentsData.ToList();
+            int quantityOfRooms = adminApartments.QuantityOfRooms(apartment[dataGridView1.CurrentRow.Index]);
             if (Convert.ToInt32(roomsQuantity.Value) >= quantityOfRooms)
             {
-                String[] data = { dataGridView1.Rows[getIndex()].Cells[0].Value.ToString(),
+                String[] data = { dataGridView1.Rows[GetIndex()].Cells[0].Value.ToString(),
                 addressAp.Text,
                 priceNumeric.Value.ToString(),
                 propertyTypeComboBox.Text,
@@ -307,7 +299,7 @@ namespace Project
                 roomsQuantity.Value.ToString()};
                 adminApartments.ModifyApartmentData("Update", new Apartment(Convert.ToInt32(data[0]), data[1], Convert.ToDouble(data[2]),
                 data[3], data[4], Convert.ToInt32(data[5]), Convert.ToInt32(data[6])));
-                dataGridView1.DataSource = adminApartments.allApartmentsData;
+                dataGridView1.DataSource = adminApartments.AllApartmentsData;
                 dataGridView1.Columns.Remove("Email");
                 dataGridView1.Columns.Remove("ApartmentID");
                 MessageBox.Show("You successfully updated this apartment");
@@ -315,28 +307,27 @@ namespace Project
             else
                 MessageBox.Show($"The quantity of rooms should be more than {quantityOfRooms-1}", "Error");
         }
-        private void updateApartmentBtn_Click(object sender, EventArgs e)
+        private void UpdateApartmentBtn_Click(object sender, EventArgs e)
         {
-            int check = 0;
             if (!String.IsNullOrEmpty(addressAp.Text) && priceNumeric.Value != 0 &&
                !String.IsNullOrEmpty(propertyTypeComboBox.Text) && !String.IsNullOrEmpty(interiorComboBox.Text) &&
-               !String.IsNullOrEmpty(bedroomsComboBox.Text) && !String.IsNullOrEmpty(roomsQuantity.Text) && int.TryParse(roomsQuantity.Text, out check) == true)
+               !String.IsNullOrEmpty(bedroomsComboBox.Text) && !String.IsNullOrEmpty(roomsQuantity.Text) && int.TryParse(roomsQuantity.Text, out _) == true)
             {
-                areYouSure();
-                comboBoxApartIds();
+                AreYouSure();
+                ComboBoxApartIds();
             }
             else
                 MessageBox.Show("Please fill all fields", "Error some field are empty");
         }
 
-        private void updateApDataBtn_Click(object sender, EventArgs e)
+        private void UpdateApDataBtn_Click(object sender, EventArgs e)
         {
             if (updateApartmentBtn.Visible == false)
-                visibleFalse();
+                VisibleFalse();
             if (dataGridView1.Rows.Count > 0)
             {
                 updateApartmentBtn.Visible = true;
-                updateApartmentInfo();
+                UpdateApartmentInfo();
             }
             else
                 MessageBox.Show("There is no data");
@@ -344,11 +335,11 @@ namespace Project
             updateApartmentBtn.Visible = true;
         }
 
-        private void deleteComplaint_Click(object sender, EventArgs e)
+        private void DeleteComplaint_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentCell.RowIndex != -1)
             {
-                List<Complaint> deleteComplaint = adminComplaints.getComplaints;
+                List<Complaint> deleteComplaint = adminComplaints.GetComplaints;
                 adminComplaints.DeleteComplaint(deleteComplaint[dataGridView1.CurrentRow.Index]);
                 deleteComplaint.RemoveAt(dataGridView1.CurrentRow.Index);
                 dataGridView1.DataSource = deleteComplaint.ToList();
@@ -359,12 +350,12 @@ namespace Project
                 MessageBox.Show("Click on complaint to delete");
         }
 
-        private void deleteAgrBtn_Click(object sender, EventArgs e)
+        private void DeleteAgrBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentCell.RowIndex != -1)
             {
-                List<Agreement> deleteAgreement = adminAgreements.getAgreements;
-                adminAgreements.deleteAgreement(deleteAgreement[dataGridView1.CurrentRow.Index]);
+                List<Agreement> deleteAgreement = adminAgreements.GetAgreements;
+                adminAgreements.DeleteAgreement(deleteAgreement[dataGridView1.CurrentRow.Index]);
                 deleteAgreement.RemoveAt(dataGridView1.CurrentRow.Index);
                 dataGridView1.DataSource = deleteAgreement.ToList();
                 MessageBox.Show("You successfully deleted the agreement");
@@ -373,7 +364,7 @@ namespace Project
                 MessageBox.Show("Click on agreement to delete");
         }
 
-        private void addScheduleBtn_Click(object sender, EventArgs e)
+        private void AddScheduleBtn_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(apartmentIDCB.Text) && !String.IsNullOrEmpty(UserIDCB.Text) && !String.IsNullOrEmpty(DayCB.Text) &&
                 !String.IsNullOrEmpty(Job.Text))
@@ -381,7 +372,7 @@ namespace Project
                 int apartmentID = Convert.ToInt32(apartmentIDCB.Text), userID = Convert.ToInt32(UserIDCB.Text);
                 string day = DayCB.Text, job = Job.Text;
                 adminSchedule.ModifyUsersData("Insert", new Schedule(0, apartmentID, userID, day, job));
-                dataGridView1.DataSource = adminSchedule.getSchedules.ToList();
+                dataGridView1.DataSource = adminSchedule.GetSchedules.ToList();
 
                 MessageBox.Show("Created event for apartment: " + apartmentIDCB.Text);
                 apartmentIDCB.Text = "";UserIDCB.Text = "";DayCB.Text = "";Job.Text = "";
@@ -392,27 +383,27 @@ namespace Project
             }
         }
 
-        private void createScheduleBtn_Click(object sender, EventArgs e)
+        private void CreateScheduleBtn_Click(object sender, EventArgs e)
         {
-            visibleFalse();
+            VisibleFalse();
             updateSchedule.Visible = false;
             apartmentIDCB.Enabled = true;
             UserIDCB.Enabled = true;
             addScheduleBtn.Visible = true;
         }
 
-        private void updateScheduleBtn_Click(object sender, EventArgs e)
+        private void UpdateScheduleBtn_Click(object sender, EventArgs e)
         {
-            visibleFalse();
-            updateScheduleInfo();
+            VisibleFalse();
+            UpdateScheduleInfo();
             addScheduleBtn.Visible = false;
             apartmentIDCB.Enabled = false;
             UserIDCB.Enabled = false;
             updateSchedule.Visible = true;
         }
-        private void updateScheduleInfo()
+        private void UpdateScheduleInfo()
         {
-            List<String> copy = adminSchedule.scheduleDataInfo(Convert.ToInt32(dataGridView1.Rows[getIndex()].Cells[0].Value));
+            List<String> copy = adminSchedule.ScheduleDataInfo(Convert.ToInt32(dataGridView1.Rows[GetIndex()].Cells[0].Value));
             ScheduleID.Text = copy[0];
             apartmentIDCB.Text = copy[1];
             UserIDCB.Text = copy[2];
@@ -420,27 +411,27 @@ namespace Project
             Job.Text = copy[4];
         }
 
-        private void addUserIds(object sender, EventArgs e)
+        private void AddUserIds(object sender, EventArgs e)
         {
             if (updateSchedule.Visible == false)
             {
                 UserIDCB.DataSource = null;
                 if (apartmentIDCB.SelectedIndex != -1)
-                    UserIDCB.DataSource = checkData.addUserIds(Convert.ToInt32(apartmentIDCB.Text));
+                    UserIDCB.DataSource = checkData.AddUserIds(Convert.ToInt32(apartmentIDCB.Text));
             }
         }
 
-        private void updateSchedule_Click(object sender, EventArgs e)
+        private void UpdateSchedule_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(apartmentIDCB.Text) && !String.IsNullOrEmpty(UserIDCB.Text) && !String.IsNullOrEmpty(DayCB.Text) &&
               !String.IsNullOrEmpty(Job.Text))
             {
-                int id= Convert.ToInt32(dataGridView1.Rows[getIndex()].Cells[0].Value), 
+                int id= Convert.ToInt32(dataGridView1.Rows[GetIndex()].Cells[0].Value), 
                     apartmentID = Convert.ToInt32(apartmentIDCB.Text),
                     userID = Convert.ToInt32(UserIDCB.Text);
                 string day = DayCB.Text, job = Job.Text;
                 adminSchedule.ModifyUsersData("Update", new Schedule(id, apartmentID, userID, day, job));
-                dataGridView1.DataSource = adminSchedule.getSchedules.ToList();
+                dataGridView1.DataSource = adminSchedule.GetSchedules.ToList();
                 MessageBox.Show("Created event for apartment: " + apartmentIDCB.Text);
                 apartmentIDCB.Text = ""; UserIDCB.Text = ""; DayCB.Text = ""; Job.Text = "";
             }
@@ -450,12 +441,12 @@ namespace Project
             }
         }
 
-        private void deleteScheduleBtn_Click(object sender, EventArgs e)
+        private void DeleteScheduleBtn_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentCell.RowIndex != -1)
             {
-                int id =Convert.ToInt32(dataGridView1.Rows[getIndex()].Cells[0].Value);
-                List<Schedule> deleteSchedule = adminSchedule.getSchedules;
+                _ = Convert.ToInt32(dataGridView1.Rows[GetIndex()].Cells[0].Value);
+                List<Schedule> deleteSchedule = adminSchedule.GetSchedules;
                 adminSchedule.ModifyUsersData("Delete", (deleteSchedule[dataGridView1.CurrentRow.Index]));
                 deleteSchedule.RemoveAt(dataGridView1.CurrentRow.Index);
                 dataGridView1.DataSource = deleteSchedule.ToList();
@@ -465,9 +456,9 @@ namespace Project
                 MessageBox.Show("Click on complaint to delete");
         }
 
-        private void updateApartmentInfo()
+        private void UpdateApartmentInfo()
         {
-            List<String> copy = adminApartments.apartmentDataInfo(Convert.ToInt32(dataGridView1.Rows[getIndex()].Cells[0].Value));
+            List<String> copy = adminApartments.ApartmentDataInfo(Convert.ToInt32(dataGridView1.Rows[GetIndex()].Cells[0].Value));
             idTxtBox.Text = copy[0];
             addressAp.Text = copy[1];
             priceNumeric.Value = Decimal.Parse(copy[2]);
@@ -479,58 +470,62 @@ namespace Project
         #endregion
 
 
-        private void onClick(object sender, DataGridViewCellEventArgs e)
+        private void OnClick(object sender, DataGridViewCellEventArgs e)
         {
             if (updateApartmentBtn.Visible == true)
-                updateApartmentInfo();
+                UpdateApartmentInfo();
             if (updateSchedule.Visible == true)
-                updateScheduleInfo();
+                UpdateScheduleInfo();
 
         }
        
         private void ClosingForm(object sender, FormClosingEventArgs e)
         {
             this.Visible = false;
-            LoginForm openForm = new LoginForm();
-            openForm.Visible = true;
+            _ = new LoginForm
+            {
+                Visible = true
+            };
         }
-        private int getIndex()
+        private int GetIndex()
         {
             int rc = dataGridView1.CurrentCell.RowIndex;
             return rc;
         }
 
-        private void changeDataGrid(object sender, EventArgs e)
+        private void ChangeDataGrid(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
             if (adminInterface.SelectedIndex == 0)
-                dataGridView1.DataSource = studentAuthority.allUsersData.ToList();
+                dataGridView1.DataSource = studentAuthority.AllUsersData.ToList();
             if (adminInterface.SelectedIndex == 1)
             {
-                dataGridView1.DataSource = adminApartments.allApartmentsData.ToList();
+                dataGridView1.DataSource = adminApartments.AllApartmentsData.ToList();
                 dataGridView1.Columns.Remove("Email");
                 dataGridView1.Columns.Remove("ApartmentID");
 
 
             }
             if (adminInterface.SelectedIndex == 2)
-                dataGridView1.DataSource = adminApartments.apartmentsAndUser.ToList();
+                dataGridView1.DataSource = adminApartments.ApartmentsAndUser.ToList();
                 
             if (adminInterface.SelectedIndex == 3)
-                dataGridView1.DataSource = adminComplaints.getComplaints.ToList();
+                dataGridView1.DataSource = adminComplaints.GetComplaints.ToList();
             if (adminInterface.SelectedIndex == 4)
             {
                 apartmentIDCB.DataSource = null;
-                apartmentIDCB.DataSource = checkData.addApartmentIds();
-                dataGridView1.DataSource = adminSchedule.getSchedules.ToList();
+                apartmentIDCB.DataSource = checkData.AddApartmentIds();
+                dataGridView1.DataSource = adminSchedule.GetSchedules.ToList();
             }
             if (adminInterface.SelectedIndex == 5)
-                dataGridView1.DataSource = adminAgreements.getAgreements.ToList();
+                dataGridView1.DataSource = adminAgreements.GetAgreements.ToList();
             if (adminInterface.SelectedIndex == 6)
             {
                 this.Visible = false;
-                LoginForm openForm = new LoginForm();
-                openForm.Visible = true;
+                _ = new LoginForm
+                {
+                    Visible = true
+                };
             }
 
 

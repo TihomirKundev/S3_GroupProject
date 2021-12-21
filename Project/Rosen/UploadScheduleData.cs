@@ -11,12 +11,12 @@ namespace Project
     {
         private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
 
-        public List<Schedule> schedulesForUser()
+        public List<Schedule> SchedulesForUser()
         {
             List<Schedule> schedulesForUser = new List<Schedule>();
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Schedule WHERE UserID = '" + User.userID + "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Schedule WHERE UserID = '" + User.UserID + "'", con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -85,7 +85,7 @@ namespace Project
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public List<String> showDataInComboBoxesForSchedule(int id)
+        public List<String> ShowDataInComboBoxesForSchedule(int id)
         {
             List<string> str = new List<string>();
             SqlConnection con = new SqlConnection(@dataLink);

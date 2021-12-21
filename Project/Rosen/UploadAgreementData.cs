@@ -10,16 +10,16 @@ namespace Project
     class UploadAgreementData
     {
         private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
-        public List<Agreement> agreementsConnectedToUser(int changeData)
+        public List<Agreement> AgreementsConnectedToUser(int changeData)
         {
             List<Agreement> schedulesForUser = new List<Agreement>();
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();
             SqlCommand cmd ;
             if(changeData==0)
-            cmd = new SqlCommand("SELECT  s.ID,u.Username as ForFromUser, Agreement, Process, StartDate, EndDate FROM StudentAgreements s inner join UsersData u ON  s.AgreementForUserID = u.ID  WHERE CreatedUserID ='" + User.userID + "'", con);
+            cmd = new SqlCommand("SELECT  s.ID,u.Username as ForFromUser, Agreement, Process, StartDate, EndDate FROM StudentAgreements s inner join UsersData u ON  s.AgreementForUserID = u.ID  WHERE CreatedUserID ='" + User.UserID + "'", con);
             else
-            cmd = new SqlCommand("SELECT  s.ID,u.Username as ForFromUser, Agreement, Process, StartDate, EndDate FROM StudentAgreements s inner join UsersData u ON  s.CreatedUserID= u.ID  WHERE AgreementForUserID ='" + User.userID + "'", con);
+            cmd = new SqlCommand("SELECT  s.ID,u.Username as ForFromUser, Agreement, Process, StartDate, EndDate FROM StudentAgreements s inner join UsersData u ON  s.CreatedUserID= u.ID  WHERE AgreementForUserID ='" + User.UserID + "'", con);
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -40,7 +40,7 @@ namespace Project
             con.Close();
             return schedulesForUser;
         }
-        public List<Agreement> allAgreements()
+        public List<Agreement> AllAgreements()
         {
             List<Agreement> agreements = new List<Agreement>();
             SqlConnection con = new SqlConnection(@dataLink);
@@ -64,7 +64,7 @@ namespace Project
             con.Close();
             return agreements;
         }
-        public void approveAgreement(int ID,string approvedNotApproved)
+        public void ApproveAgreement(int ID,string approvedNotApproved)
         {
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();
@@ -74,11 +74,11 @@ namespace Project
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public DataTable usersInTheSameApartment()
+        public DataTable UsersInTheSameApartment()
         {
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT Username,ID FROM UsersData WHERE Apartment = '" + User.apartmentID + "' AND ID != '" + User.userID+ "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT Username,ID FROM UsersData WHERE Apartment = '" + User.ApartmentID + "' AND ID != '" + User.UserID+ "'", con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -86,14 +86,14 @@ namespace Project
             return dt;
         }
   
-        public void createAgreement(Agreement makeAgreement)
+        public void CreateAgreement(Agreement makeAgreement)
         {
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();
             SqlCommand cmd = new SqlCommand("insert into StudentAgreements values (@CreatedUserID,@ApartmentID, @AgreementForUserID," +
                 "@Agreement,@Process, @StartDate,  @EndDate)", con);
-            cmd.Parameters.AddWithValue("@CreatedUserID", User.userID);
-            cmd.Parameters.AddWithValue("@ApartmentID", User.apartmentID);
+            cmd.Parameters.AddWithValue("@CreatedUserID", User.UserID);
+            cmd.Parameters.AddWithValue("@ApartmentID", User.ApartmentID);
             cmd.Parameters.AddWithValue("@AgreementForUserID", makeAgreement.AgreementForUserID);
             cmd.Parameters.AddWithValue("@Agreement", makeAgreement.AgreementText);
             cmd.Parameters.AddWithValue("@Process", "Waiting for respond");
@@ -103,7 +103,7 @@ namespace Project
             con.Close();
         }
     
-        public void deleteStudentAgreement(Agreement deleteAgr)
+        public void DeleteStudentAgreement(Agreement deleteAgr)
         {
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();

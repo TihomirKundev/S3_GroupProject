@@ -10,21 +10,16 @@ namespace Project
 {
     class AdminComplaint
     {
-        private UploadComplaintData complaints = new UploadComplaintData();
-        private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
+        private readonly UploadComplaintData complaints = new UploadComplaintData();
+        public List<Complaint> GetComplaints { get; private set; }
         public AdminComplaint()
         {
-            getComplaints = complaints.AllComplaints(); ;
-        }
-        public List<Complaint> getComplaints
-        {
-            get;
-            private set;
+            GetComplaints = complaints.AllComplaints(); ;
         }
         public void DeleteComplaint(Complaint deleteComplaint)
         {
             complaints.DeleteComplainMessages(deleteComplaint);
-            getComplaints = complaints.AllComplaints(); 
+            GetComplaints = complaints.AllComplaints(); 
         }
     }
 }

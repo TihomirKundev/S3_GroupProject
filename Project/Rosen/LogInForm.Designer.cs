@@ -45,7 +45,7 @@ namespace Project
             this.loginBtn.Tag = "Login";
             this.loginBtn.Text = "Login";
             this.loginBtn.UseVisualStyleBackColor = true;
-            this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
+            this.loginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // logInPassword
             // 
@@ -96,7 +96,7 @@ namespace Project
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
             this.Text = "Log in";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closeApplication);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseApplication);
             this.ResumeLayout(false);
             this.PerformLayout();
 

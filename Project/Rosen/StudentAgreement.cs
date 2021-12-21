@@ -8,24 +8,24 @@ namespace Project
 {
     class StudentAgreement
     {
-        UploadAgreementData agreements = new UploadAgreementData();
+        private readonly UploadAgreementData agreements = new UploadAgreementData();
         
-        public List<Agreement> agreementConnectedToUser(int changeData)
+        public List<Agreement> AgreementConnectedToUser(int changeData)
         {
             UploadAgreementData agreements= new UploadAgreementData();
-            return agreements.agreementsConnectedToUser(changeData);
+            return agreements.AgreementsConnectedToUser(changeData);
         }
-        public void approveAgreement(int ID,string approvedNotApproved)
+        public void ApproveAgreement(int ID,string approvedNotApproved)
         {
-            agreements.approveAgreement(ID, approvedNotApproved);
+            agreements.ApproveAgreement(ID, approvedNotApproved);
         }
-        public DataTable usersInTheSameApartment()
+        public DataTable UsersInTheSameApartment()
         {
-            return agreements.usersInTheSameApartment();
+            return agreements.UsersInTheSameApartment();
         }
-        public void createAgreement(Agreement makeAgreement)
+        public void CreateAgreement(Agreement makeAgreement)
         {
-            agreements.createAgreement(makeAgreement);
+            agreements.CreateAgreement(makeAgreement);
         }
     }
 }

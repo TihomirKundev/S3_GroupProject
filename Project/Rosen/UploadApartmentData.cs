@@ -10,12 +10,12 @@ namespace Project
     class UploadApartmentData
     {
         private readonly string dataLink = "Server=mssql.fhict.local;Database=dbi484379;User Id=dbi484379;Password=1234;";
-        public Apartment uploadUserApartment()
+        public Apartment UploadUserApartment()
         {
             Apartment apartmentUser = new Apartment();
             SqlConnection con = new SqlConnection(@dataLink);
             con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM ApartmentsData WHERE ID = '" + User.apartmentID+ "'", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM ApartmentsData WHERE ID = '" + User.ApartmentID+ "'", con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -118,19 +118,18 @@ namespace Project
             cmd.ExecuteNonQuery();
             con.Close();
         }
-        public int quantityOfRooms(Apartment apartment)
+        public int QuantityOfRooms(Apartment apartment)
         {
-            int id = 0;
             SqlConnection conn = new SqlConnection(@dataLink);
             SqlCommand cmd = new SqlCommand("SELECT * FROM UsersData Where Apartment = '"+apartment.ID+"'", conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            id = dt.Rows.Count;
+            int id = dt.Rows.Count;
             conn.Close();
             return id;
         }
-        public List<String> apartmentDataInfo(int id)
+        public List<String> ApartmentDataInfo(int id)
         {
             List<string> str = new List<string>();
             SqlConnection con = new SqlConnection(@dataLink);
