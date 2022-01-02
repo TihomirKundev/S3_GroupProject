@@ -8,27 +8,50 @@ namespace Project
 {
     public class User
     {
-        public static int UserID { get; private set; }
-        public static int ApartmentID { get; private set; }
-        public static string UserName { get; private set; }
-        public static string Password { get; private set; }
-
+        private Apartment apartment;
+        private List<Schedule> schedules = new List<Schedule>();
+        private List<Agreement> agreements = new List<Agreement>();
+        private Complaint complaint;
+        private Schedule schedule;
+        private Agreement agreement;
+2
         public int UserIdentity { get; private set; }
         public string UserEmail { get; private set; }
         public string UserPassword { get; private set; }
-        public int UserApartmentID { get; private set; }
 
-        public User(int userID2, string name2, string password2, int apartmentID2)
+        public User(int userID, string email, string password)
         {
-            UserID = userID2;
-            UserName = name2;
-            Password = password2;
-            ApartmentID = apartmentID2;
-            this.UserIdentity= userID2;
-            this.UserEmail = name2;
-            this.UserPassword = password2;
-            this.UserApartmentID = apartmentID2;
+            UserIdentity = userID;
+            UserEmail = email;
+            UserPassword = password;
         }
-       
+        public void SendComplaint(Complaint complaint, Apartment apartment)
+        {
+            
+        }
+        public Apartment UserApartment(User user)
+        {
+           
+        }
+        public List<Schedule> ScheduleForUser(User user)
+        {
+            
+        }
+        public List<Agreement> AgreementConnectedToUser(User user)
+        {
+
+        }
+        public void ApproveAgreement(User user, Agreement agreement)
+        {
+
+        }
+        public DataTable UsersInTheSameApartment()
+        {
+
+        }
+        public void CreateAgreement(Agreement agreement)
+        {
+
+        }
     }
 }

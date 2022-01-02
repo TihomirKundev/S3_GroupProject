@@ -22,5 +22,6 @@ namespace Project
             this.Day = day;
             this.Job = job;
         }
+        public 
     }
 }

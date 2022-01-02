@@ -19,7 +19,6 @@ namespace Project
         public int RoomsInApartment { get; private set; }
         public Apartment()
         {
-
         }
         public Apartment(int ID, string address, double price, string propertyType, string interior, int bedrooms, int roomsInApartment)
         {
