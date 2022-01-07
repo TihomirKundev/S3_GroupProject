@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace ProjectS07group4.StudentPanels
 {
-    public partial class AgreementsPanel : Form
+    partial class AgreementsPanel : Form
     {
         private User user;
         public AgreementsPanel(User user)
@@ -72,18 +72,25 @@ namespace ProjectS07group4.StudentPanels
             string endDate = startAndEndAgreement.SelectionRange.End.Year + "-" + startAndEndAgreement.SelectionRange.End.Month + "-" + startAndEndAgreement.SelectionRange.End.Day;
             if (!String.IsNullOrEmpty(agreementForUser.Text) && !String.IsNullOrEmpty(agreementTxtBox.Text))
             {
-                if (agreementForUser.SelectedIndex != -1 && !String.IsNullOrEmpty(agreementTxtBox.Text))
-                    if (startDate != endDate)
-                    {
-                        MessageBox.Show($"The agreement was send to user - {agreementForUser.Text}");
-                        string forUser = user.UsersInTheSameApartment[agreementForUser.SelectedIndex].UserIdentity.ToString();
-                        string forUserName = user.UsersInTheSameApartment[agreementForUser.SelectedIndex].UserEmail.Substring(0, user.UsersInTheSameApartment[agreementForUser.SelectedIndex].UserEmail.IndexOf("@"));
-                        string agreement = agreementTxtBox.Text;
-                        user.SendAgreement(forUser, agreement, startDate, endDate, forUserName);
-                        MessageBox.Show(user.UsersInTheSameApartment[0].UserIdentity.ToString());
-                    }
-                    else
-                        MessageBox.Show("The agreement should be at least 1 day:", "Error");
+                if (startAndEndAgreement.TodayDate.Year <= startAndEndAgreement.SelectionRange.Start.Year &&
+                    startAndEndAgreement.TodayDate.Month <= startAndEndAgreement.SelectionRange.Start.Month &&
+                    startAndEndAgreement.TodayDate.Day <= startAndEndAgreement.SelectionRange.Start.Day)
+                {
+                    if (agreementForUser.SelectedIndex != -1 && !String.IsNullOrEmpty(agreementTxtBox.Text))
+                        if (startDate != endDate)
+                        {
+                            MessageBox.Show($"The agreement was send to user - {agreementForUser.Text}");
+                            string forUser = user.UsersInTheSameApartment[agreementForUser.SelectedIndex].UserIdentity.ToString();
+                            string forUserName = user.UsersInTheSameApartment[agreementForUser.SelectedIndex].UserEmail.Substring(0, user.UsersInTheSameApartment[agreementForUser.SelectedIndex].UserEmail.IndexOf("@"));
+                            string agreement = agreementTxtBox.Text;
+                            user.SendAgreement(forUser, agreement, startDate, endDate, forUserName);
+                        }
+                        else
+                            MessageBox.Show("The agreement should be at least 1 day:", "Error");
+                }
+                else
+                    MessageBox.Show($"The start date can't be before {startAndEndAgreement.TodayDate.ToString().Substring(0, startAndEndAgreement.TodayDate.ToString().IndexOf(" "))}");
+               
             }
             else
                 MessageBox.Show("Please fill all fields!", "Error");

@@ -41,12 +41,24 @@ namespace ProjectS07group4.AdminManager
         {
             for (int i = 0; i < AllUsersData.Count; i++)
             {
-                if (AllUsersData[i].ID == id)
-                    AllUsersData.RemoveAt(i);
+                for (int j = 0; j < AllUsersData[i].GetSchedules.Count; j++)
+                    if (AllUsersData[i].GetSchedules[j].UserID == id)
+                    schedules.ModifyScheduleData("Delete", AllUsersData[i].GetSchedules[j].ID, 0, 0, "", "");
+                for (int j = 0; j < AllUsersData[i].GetAgreements.Count; j++)
+                    if (AllUsersData[i].GetAgreements[j].CreatedUserID == id.ToString() || AllUsersData[i].GetAgreements[j].AgreementForUserID == id.ToString())
+                        agreements.DeleteAgreementData(new Agreement(AllUsersData[i].GetAgreements[j].ID, "", "", "", "", ""));
             }
-            users.ModifyUsersData("Delete", id, "", "", 0);
+               
+            for (int i = 0; i < AllUsersData.Count; i++)
+                if (AllUsersData[i].ID == id)
+                {
+                    users.ModifyUsersData("Delete", id, "", "", 0);
+                    AllUsersData.RemoveAt(i);
+                    break;
+                }
+          
         }
-    
+        
         public void DeleteAgreement(int id)
         {
             for (int i = 0; i < AllUsersData.Count; i++)
@@ -90,6 +102,7 @@ namespace ProjectS07group4.AdminManager
             
             schedules.ModifyScheduleData("Delete", id, 0, 0, "", "");
         }
+        
         public List<String> ScheduleDataInfo(int id)
         {
             List<string> str = new List<string>();

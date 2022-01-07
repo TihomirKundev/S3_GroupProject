@@ -47,33 +47,36 @@ namespace ProjectS07group4.FormPanels
         }
         private void AdminSettings_Tick(object sender, EventArgs e)
         {
-            if (tableInfo.Rows.Count > 0 && this.Visible == true)
+            if (tableInfo.Rows.Count > 0 && updateUserBtn.Visible == true)
+            {
                 if (changeUserName.Checked == true)
                 {
                     oldData.Text = tableInfo.Rows[GetIndex()].Cells[1].Value.ToString();
                     oldOne.Text = "Old email";
                     newOne.Text = "New email";
                 }
-            if (changeUserPassword.Checked == true)
-            {
-                oldData.Text = tableInfo.Rows[GetIndex()].Cells[2].Value.ToString();
-                oldOne.Text = "Old password";
-                newOne.Text = "New password";
-            }
-            if (changeUserApartment.Checked == true)
-            {
-                newData.Visible = false;
-                availableApartments.Visible = true;
-                oldData.Text = tableInfo.Rows[GetIndex()].Cells[3].Value.ToString();
-                oldOne.Text = "Old apartment";
-                newOne.Text = "New apartment";
-            }
-            else
-            {
-                newData.Visible = true;
-                availableApartments.Visible = false;
+                if (changeUserPassword.Checked == true)
+                {
+                    oldData.Text = tableInfo.Rows[GetIndex()].Cells[2].Value.ToString();
+                    oldOne.Text = "Old password";
+                    newOne.Text = "New password";
+                }
+                if (changeUserApartment.Checked == true)
+                {
+                    newData.Visible = false;
+                    availableApartments.Visible = true;
+                    oldData.Text = tableInfo.Rows[GetIndex()].Cells[3].Value.ToString();
+                    oldOne.Text = "Old apartment";
+                    newOne.Text = "New apartment";
+                }
+                else
+                {
+                    newData.Visible = true;
+                    availableApartments.Visible = false;
 
+                }
             }
+               
         }
         private void createUserBtn_Click(object sender, EventArgs e)
         {
@@ -140,6 +143,7 @@ namespace ProjectS07group4.FormPanels
         }
         private void deleteUserDataBtn_Click(object sender, EventArgs e)
         {
+            adminSettings.Stop();
             createUserBtn.Visible = false;
             updateUserBtn.Visible = false;
             if (tableInfo.Rows.Count > 0)
@@ -149,10 +153,12 @@ namespace ProjectS07group4.FormPanels
                 tableInfo.DataSource = null;
                 tableInfo.DataSource = studentAuthority.AllUsersData;
                 CreateUserAddAvailableApartment();
+                
                 MessageBox.Show("Successfully deleted");
             }
             else
                 MessageBox.Show("There is no data");
+            adminSettings.Start();
         }
 
 

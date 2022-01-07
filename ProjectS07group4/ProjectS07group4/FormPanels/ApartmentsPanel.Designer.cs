@@ -66,6 +66,7 @@ namespace ProjectS07group4.FormPanels
             this.tableInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableInfo.Location = new System.Drawing.Point(3, 3);
             this.tableInfo.Name = "tableInfo";
+            this.tableInfo.RowHeadersVisible = false;
             this.tableInfo.RowHeadersWidth = 62;
             this.tableInfo.RowTemplate.Height = 28;
             this.tableInfo.Size = new System.Drawing.Size(1067, 341);
