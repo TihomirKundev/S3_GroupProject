@@ -143,5 +143,18 @@ namespace ProjectS07group4.FormPanels
             else
                 MessageBox.Show("Apartment is empty");
         }
+
+        private void DeleteAllInformationAboutApartment(Apartment apartment)
+        {
+            foreach (Users x in studentAuthority.AllUsersData)
+            {
+                if (x.UserApartmentID == apartment.ID)
+                {
+                    x.UpdateUser(x.UserEmail, x.UserPassword, 0);
+                }
+                x.userAgreements.Clear();
+                x.userSchedule.Clear();
+            }
+        }
     }
 }
