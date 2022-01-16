@@ -53,7 +53,6 @@
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminManager\AdminApartment.cs" />
-    <Compile Include="AdminManager\AdminComplaint.cs" />
     <Compile Include="AdminManager\StudentAuthority.cs" />
     <Compile Include="AdminManager\Users.cs" />
     <Compile Include="Agreement.cs" />
@@ -118,6 +117,7 @@
     <Compile Include="StudentPanels\SchedulePanel.Designer.cs">
       <DependentUpon>SchedulePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UploadData\GeneralUploadData.cs" />
     <Compile Include="UploadData\UploadAgreementData.cs" />
     <Compile Include="UploadData\UploadApartmentData.cs" />
     <Compile Include="UploadData\UploadComplaintData.cs" />

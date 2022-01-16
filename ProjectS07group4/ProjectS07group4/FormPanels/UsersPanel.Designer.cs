@@ -88,11 +88,13 @@ namespace ProjectS07group4.FormPanels
             this.tableInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableInfo.Location = new System.Drawing.Point(0, 0);
             this.tableInfo.Name = "tableInfo";
+            this.tableInfo.ReadOnly = true;
             this.tableInfo.RowHeadersVisible = false;
             this.tableInfo.RowHeadersWidth = 62;
             this.tableInfo.RowTemplate.Height = 28;
             this.tableInfo.Size = new System.Drawing.Size(908, 264);
             this.tableInfo.TabIndex = 97;
+            this.tableInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ShowApartmentInfo2Click);
             // 
             // hideUpdateUser
             // 
@@ -165,7 +167,7 @@ namespace ProjectS07group4.FormPanels
             this.updateUserBtn.Tag = "changeBy";
             this.updateUserBtn.Text = "Change";
             this.updateUserBtn.UseVisualStyleBackColor = true;
-            this.updateUserBtn.Click += new System.EventHandler(this.updateUserBtn_Click);
+            this.updateUserBtn.Click += new System.EventHandler(this.UpdateUserBtn_Click);
             // 
             // panel2
             // 
@@ -191,7 +193,7 @@ namespace ProjectS07group4.FormPanels
             this.createUserBtn.Text = "Add";
             this.createUserBtn.UseVisualStyleBackColor = true;
             this.createUserBtn.Visible = false;
-            this.createUserBtn.Click += new System.EventHandler(this.createUserBtn_Click);
+            this.createUserBtn.Click += new System.EventHandler(this.CreateUserBtn_Click);
             // 
             // userAddApartment
             // 
@@ -312,7 +314,7 @@ namespace ProjectS07group4.FormPanels
             this.deleteUserDataBtn.TabIndex = 92;
             this.deleteUserDataBtn.Text = "Delete";
             this.deleteUserDataBtn.UseVisualStyleBackColor = true;
-            this.deleteUserDataBtn.Click += new System.EventHandler(this.deleteUserDataBtn_Click);
+            this.deleteUserDataBtn.Click += new System.EventHandler(this.DeleteUserDataBtn_Click);
             // 
             // updateUserDataBtn
             // 
@@ -322,7 +324,7 @@ namespace ProjectS07group4.FormPanels
             this.updateUserDataBtn.TabIndex = 91;
             this.updateUserDataBtn.Text = "Update";
             this.updateUserDataBtn.UseVisualStyleBackColor = true;
-            this.updateUserDataBtn.Click += new System.EventHandler(this.updateUserDataBtn_Click);
+            this.updateUserDataBtn.Click += new System.EventHandler(this.UpdateUserDataBtn_Click);
             // 
             // createUserDataBtn
             // 
@@ -332,7 +334,7 @@ namespace ProjectS07group4.FormPanels
             this.createUserDataBtn.TabIndex = 90;
             this.createUserDataBtn.Text = "Create";
             this.createUserDataBtn.UseVisualStyleBackColor = true;
-            this.createUserDataBtn.Click += new System.EventHandler(this.createUserDataBtn_Click);
+            this.createUserDataBtn.Click += new System.EventHandler(this.CreateUserDataBtn_Click);
             // 
             // adminSettings
             // 

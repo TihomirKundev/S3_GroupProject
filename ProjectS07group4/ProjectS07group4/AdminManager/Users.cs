@@ -2,11 +2,10 @@
 using ProjectS07group4.UploadData;
 namespace ProjectS07group4.AdminManager
 {
-    public class Users
+    public class Users : GeneralUploadData 
     {
-        private UploadApartmentData apartment = new UploadApartmentData();
-        private UploadScheduleData schedule = new UploadScheduleData();
-        private UploadAgreementData agreement = new UploadAgreementData();
+        private AdminApartment adminApartment = new AdminApartment();
+
         public int ID
         {
             get; private set;
@@ -23,34 +22,40 @@ namespace ProjectS07group4.AdminManager
         {
             get; private set;
         }
+        protected internal Apartment UserApartment
+        {
+            get;
+            private set;
+        }
+        protected internal List<Schedule> UserSchedule
+        {
+            get;
+            private set;
+        }
+        public List<Agreement> UserAgreements
+        {
+            get;
+            private set;
+        }
         public Users(int userID2, string name2, string password2, int apartmentID2)
         {
             this.ID = userID2;
             this.UserEmail = name2;
             this.UserPassword = password2;
             this.UserApartmentID = apartmentID2;
-            GetApartment = apartment.UploadUserApartment(this);
-            GetSchedules = schedule.SchedulesForUser(this);
-            GetAgreements = agreement.GetAgreements(this);
+            UserApartment = apartment.UploadUserApartment(this);
+            UserSchedule = schedule.SchedulesForUser(this);
+            UserAgreements = agreement.GetAgreements(this);
         }
-        public Users(string updateSchedules)
+        public void UpdateUser(string email,string password, int apartmentID)
         {
-            GetSchedules = schedule.SchedulesForUser(this);
+            this.UserEmail = email;
+            this.UserPassword = password;
+            this.UserApartmentID = apartmentID;
+        foreach (Apartment x in adminApartment.AllApartments)
+                if (x.ID == this.UserApartmentID)
+                    UserApartment = x;
         }
-        protected internal Apartment GetApartment
-        {
-            get;
-            private set;
-        }
-        protected internal List<Schedule> GetSchedules
-        {
-            get;
-            private set;
-        }
-        public List<Agreement> GetAgreements
-        {
-            get;
-            private set;
-        }
+        
     }
 }

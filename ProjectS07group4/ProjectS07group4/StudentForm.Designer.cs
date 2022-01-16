@@ -97,7 +97,7 @@ namespace ProjectS07group4
             this.agreementsBtn.TabIndex = 20;
             this.agreementsBtn.Text = "Agreements";
             this.agreementsBtn.UseVisualStyleBackColor = false;
-            this.agreementsBtn.Click += new System.EventHandler(this.agreementsBtn_Click);
+            this.agreementsBtn.Click += new System.EventHandler(this.AgreementsBtn_Click);
             // 
             // makeComplaintBtn
             // 
@@ -116,7 +116,7 @@ namespace ProjectS07group4
             this.makeComplaintBtn.TabIndex = 19;
             this.makeComplaintBtn.Text = "Make complaint";
             this.makeComplaintBtn.UseVisualStyleBackColor = false;
-            this.makeComplaintBtn.Click += new System.EventHandler(this.makeComplaintBtn_Click);
+            this.makeComplaintBtn.Click += new System.EventHandler(this.MakeComplaintBtn_Click);
             // 
             // myScheduleBtn
             // 
@@ -135,7 +135,7 @@ namespace ProjectS07group4
             this.myScheduleBtn.TabIndex = 18;
             this.myScheduleBtn.Text = "My schedule";
             this.myScheduleBtn.UseVisualStyleBackColor = false;
-            this.myScheduleBtn.Click += new System.EventHandler(this.myScheduleBtn_Click);
+            this.myScheduleBtn.Click += new System.EventHandler(this.MyScheduleBtn_Click);
             // 
             // homePageBtn
             // 
@@ -147,7 +147,7 @@ namespace ProjectS07group4
             this.homePageBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.homePageBtn.TabIndex = 15;
             this.homePageBtn.TabStop = false;
-            this.homePageBtn.Click += new System.EventHandler(this.homePage);
+            this.homePageBtn.Click += new System.EventHandler(this.HomePage);
             // 
             // StudentForm
             // 

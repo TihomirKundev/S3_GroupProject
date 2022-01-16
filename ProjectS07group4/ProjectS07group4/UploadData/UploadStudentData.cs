@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 namespace ProjectS07group4.UploadData
 {
-    class UploadStudentData : DataBaseLink
+    public class UploadStudentData : DataBaseLink
     {
         public List<User> UsersInTheSameApartment(User user)
         {
@@ -19,14 +19,15 @@ namespace ProjectS07group4.UploadData
             {
                 int id = Convert.ToInt32(dr["ID"]);
                 string username = Convert.ToString(dr["Username"]);
-
-
-
                 users.Add(new User(id, username, "", 0));
             }
             conn.Close();
             return users;
         }
+
+     
+
+
         public List<AdminManager.Users> AllUsers()
         {
             List<AdminManager.Users> users = new List<AdminManager.Users>();
@@ -46,6 +47,16 @@ namespace ProjectS07group4.UploadData
             }
             conn.Close();
             return users;
+        }
+        public void UpdateUserApartmentToNull(Apartment apartment)
+        {
+            SqlConnection con = new SqlConnection(this.@getLink());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("");
+            cmd = new SqlCommand("Update UsersData set Apartment=@Apartment where Apartment='" + apartment.ID+ "'", con);
+            cmd.Parameters.AddWithValue("@Apartment", 0);
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         public void ModifyUsersData(string option,int userID, string email,string password,int apartmentID)

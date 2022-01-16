@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 namespace ProjectS07group4.UploadData
 {
-    class UploadScheduleData : DataBaseLink
+    public class UploadScheduleData : DataBaseLink
     {
         public List<Schedule> SchedulesForUser(User user) 
         {
@@ -75,6 +75,15 @@ namespace ProjectS07group4.UploadData
                 cmd = new SqlCommand("DELETE FROM Schedule WHERE ID = '" + id + "'", con);
                 cmd.Parameters.AddWithValue("@ID", id);
             }
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void DeleteScheduleData(Apartment apartmentInfo)
+        {
+            SqlConnection con = new SqlConnection(this.@getLink());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("DELETE FROM Schedule WHERE ApartmentID = @ApartmentID", con);
+            cmd.Parameters.AddWithValue("@ApartmentID", apartmentInfo.ID);
             cmd.ExecuteNonQuery();
             con.Close();
         }

@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 namespace ProjectS07group4.UploadData
 {
-    class UploadApartmentData : DataBaseLink
+    public class UploadApartmentData : DataBaseLink
     {
         public Apartment UploadUserApartment(User user) 
         {
@@ -29,6 +29,8 @@ namespace ProjectS07group4.UploadData
             }
             return null;
         }
+
+   
         public Apartment UploadUserApartment(AdminManager.Users user) 
         {
             SqlConnection con = new SqlConnection(this.getLink());
