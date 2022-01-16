@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 namespace ProjectS07group4.UploadData
 {
-    class UploadAgreementData : DataBaseLink
+    public class UploadAgreementData : DataBaseLink
     {
         public List<Agreement> AgreementsFromUser(User user)
         {
@@ -29,6 +29,7 @@ namespace ProjectS07group4.UploadData
             con.Close();
             return AgreementsConnectedToUser;
         }
+     
         public List<Agreement> AgreementsForUser(User user)
         {
             List<Agreement> AgreementsConnectedToUser = new List<Agreement>();
@@ -111,6 +112,25 @@ namespace ProjectS07group4.UploadData
             con.Open();
             SqlCommand cmd = new SqlCommand("DELETE FROM StudentAgreements WHERE ID = @ID", con);
             cmd.Parameters.AddWithValue("@ID", deleteAgreement.ID);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void DeleteAgreementData(Apartment apartmentInfo)
+        {
+            SqlConnection con = new SqlConnection(this.@getLink());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("DELETE FROM StudentAgreements WHERE ApartmentID = @ApartmentID", con);
+            cmd.Parameters.AddWithValue("@ApartmentID", apartmentInfo.ID);
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        public void UpdateUserApartmentToNull(Apartment apartment)
+        {
+            SqlConnection con = new SqlConnection(this.@getLink());
+            con.Open();
+            SqlCommand cmd = new SqlCommand("");
+            cmd = new SqlCommand("Update UsersData set Apartment=@Apartment where Apartment='" + apartment.ID + "'", con);
+            cmd.Parameters.AddWithValue("@Apartment", 0);
             cmd.ExecuteNonQuery();
             con.Close();
         }

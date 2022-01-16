@@ -2,36 +2,42 @@
 using ProjectS07group4.FormPanels;
 using System;
 using System.Windows.Forms;
-using System.Globalization;
 using System.Drawing;
-
-namespace ProjectS07group4
+namespace ProjectS07group4 
 {
-    public partial class AdminForm : Form
+    public partial class AdminForm : Form 
     {
-        StudentAuthority studentAuthority;
-        AdminComplaint adminComplaint;
+        private StudentAuthority studentAuthority;
+        private AdminApartment adminApartment;
         private DataGridView dataGrid = new DataGridView();
         public AdminForm()
         {
             InitializeComponent();
             studentAuthority = new StudentAuthority();
-            adminComplaint = new AdminComplaint();
+            adminApartment = new AdminApartment();
         }
-        private void changeData(Form panel)
+        private void UsersBtn_Click(object sender, EventArgs e)
         {
+            ChangeData(new UsersPanel(studentAuthority));
+
+        }
+        private void ApartmentsBtn_Click(object sender, EventArgs e)
+        {
+            ChangeData(new ApartmentsPanel(studentAuthority));
+
+        }
+        private void ChangeData(Form panel)
+        {
+           
             showData.Controls.Clear();
             panel.TopLevel = false;
             panel.Top = 0;
             this.showData.Controls.Add(panel);
             panel.FormBorderStyle = FormBorderStyle.None;
             panel.Show();
+            
         }
-        private void usersBtn_Click(object sender, EventArgs e)
-        {
-            changeData(new UsersPanel(studentAuthority));
-        }
-        private void userAndApartmentBtn_Click(object sender, EventArgs e)
+        private void UserAndApartmentBtn_Click(object sender, EventArgs e)
         {
             showData.Controls.Clear();
             int basex = showData.Location.X;
@@ -49,11 +55,9 @@ namespace ProjectS07group4
             usersAndApartment.ScrollBars = ScrollBars.Both;
             showData.Controls.Add(usersAndApartment);
         }
-        private void apartmentsBtn_Click(object sender, EventArgs e)
-        {
-            changeData(new ApartmentsPanel(studentAuthority));
-        }
-        private void complaintBtn_Click(object sender, EventArgs e)
+
+
+        private void ComplaintBtn_Click(object sender, EventArgs e)
         {
             showData.Controls.Clear();
             int basex = showData.Location.X;
@@ -70,7 +74,7 @@ namespace ProjectS07group4
             complaint.AllowUserToOrderColumns = false;
             complaint.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             complaint.Name = String.Format("showUserAndApartment", 1);
-            complaint.DataSource = adminComplaint.AllComplaints;
+            complaint.DataSource = adminApartment.GetAllComplaints();
             complaint.ScrollBars = ScrollBars.Both;
             dataGrid = complaint;
             showData.Controls.Add(complaint);
@@ -82,25 +86,25 @@ namespace ProjectS07group4
             btn.Top = complaint.Bottom + 20;
             btn.Left = this.showData.Width / 2 - 30;
             btn.BringToFront();
-            btn.Click += new EventHandler(deleteComplaint_Click);
+            btn.Click += new EventHandler(DeleteComplaint_Click);
             showData.Controls.Add(btn);
         }
-        private void deleteComplaint_Click(object sender, EventArgs e)
+        private void DeleteComplaint_Click(object sender, EventArgs e)
         {
             if (dataGrid.Rows.Count > 0)
             {
-                adminComplaint.DeleteComplaintData(Convert.ToInt32(dataGrid.Rows[dataGrid.CurrentRow.Index].Cells[0].Value));
+                adminApartment.DeleteComplaint(adminApartment.GetComplaint(Convert.ToInt32(dataGrid.Rows[dataGrid.CurrentRow.Index].Cells[0].Value)));
                 MessageBox.Show("Successfully deleted");
-                complaintBtn.PerformClick();
+                ComplaintBtn.PerformClick();
             }
             else
                 MessageBox.Show("There is no more complaints", "No more data");
         }
-        private void scheduleBtn_Click(object sender, EventArgs e)
+        private void ScheduleBtn_Click(object sender, EventArgs e)
         {
-            changeData(new SchedulesPanel(studentAuthority));
+            ChangeData(new SchedulesPanel(studentAuthority));
         }
-        private void agreementsBtn_Click(object sender, EventArgs e)
+        private void AgreementsBtn_Click(object sender, EventArgs e)
         {
             showData.Controls.Clear();
             int basex = showData.Location.X;
@@ -112,17 +116,18 @@ namespace ProjectS07group4
             agreementsGrid.Height = 300;
             agreementsGrid.Name = String.Format("agreementsGrid", 1);
             agreementsGrid.DataSource = studentAuthority.UsersAgreement();
-            
-            
+
             agreementsGrid.RowHeadersVisible = false;
             agreementsGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             agreementsGrid.ScrollBars = ScrollBars.Both;
             agreementsGrid.AllowUserToAddRows = false;
             agreementsGrid.AllowUserToDeleteRows = false;
-            agreementsGrid.AllowUserToResizeColumns = true;
+            agreementsGrid.AllowUserToResizeColumns = false;
             agreementsGrid.AllowUserToOrderColumns = false;
+            agreementsGrid.ReadOnly = true;
 
             dataGrid = agreementsGrid;
+            dataGrid.CellDoubleClick += new DataGridViewCellEventHandler(Check_Click);
             dataGrid.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(CheckForExpiredAgreements_Click);
             showData.Controls.Add(agreementsGrid);
 
@@ -133,7 +138,7 @@ namespace ProjectS07group4
             btn.Top = agreementsGrid.Bottom + 20;
             btn.Left = this.showData.Width / 2 - 30;
             btn.BringToFront();
-            btn.Click += new EventHandler(deleteAgreement_Click);
+            btn.Click += new EventHandler(DeleteAgreement_Click);
             showData.Controls.Add(btn);
 
             Button btn2 = new Button();
@@ -141,13 +146,14 @@ namespace ProjectS07group4
             btn2.Text = "Delete expired agreements";
             btn2.Name = String.Format("deleteOldAgreements");
             btn2.Top = agreementsGrid.Bottom + 20;
-            btn2.Left = showData.Left ;
+            btn2.Left = showData.Left;
             btn2.BringToFront();
-            btn2.Click += new EventHandler(deleteOldAgreement_Click);
+            btn2.Click += new EventHandler(DeleteOldAgreement_Click);
             showData.Controls.Add(btn2);
             ShowExpiredAgreements();
 
         }
+      
         private void ShowExpiredAgreements()
         {
             DateTime dateTime = DateTime.UtcNow.Date;
@@ -171,7 +177,7 @@ namespace ProjectS07group4
         {
             ShowExpiredAgreements();
         }
-        private void deleteAgreement_Click(object sender, EventArgs e)
+        private void DeleteAgreement_Click(object sender, EventArgs e)
         {
             if (dataGrid.Rows.Count > 0)
             {
@@ -182,14 +188,14 @@ namespace ProjectS07group4
             else
                 MessageBox.Show("There is no more agreements", "No more data");
         }
-        private void deleteOldAgreement_Click(object sender, EventArgs e)
+        private void DeleteOldAgreement_Click(object sender, EventArgs e)
         {
 
             if (dataGrid.Rows.Count > 0)
             {
                 foreach (DataGridViewRow row in dataGrid.Rows)
                 {
-                    if(row.Cells[7].Style.BackColor == Color.Red)
+                    if (row.Cells[7].Style.BackColor == Color.Red)
                     {
                         studentAuthority.DeleteAgreement(Convert.ToInt32(row.Cells[0].Value));
                     }
@@ -202,17 +208,29 @@ namespace ProjectS07group4
             else
                 MessageBox.Show("There is no more agreements", "No more data");
         }
-        private void closeForm(object sender, FormClosingEventArgs e)
+        private void Check_Click(object sender, EventArgs e)
+        {
+            if (dataGrid.Rows.Count > 0)
+            {
+                int createdUserID = Convert.ToInt32(dataGrid.Rows[dataGrid.CurrentCell.RowIndex].Cells[1].Value);
+                int forUserID = Convert.ToInt32(dataGrid.Rows[dataGrid.CurrentCell.RowIndex].Cells[3].Value);
+                MessageBox.Show(studentAuthority.GetAgreementInfo(createdUserID, forUserID),
+               $"Agreement: {dataGrid.Rows[dataGrid.CurrentCell.RowIndex].Cells[4].Value.ToString()}");
+            }
+        }
+        private void CloseForm(object sender, FormClosingEventArgs e)
         {
             _ = new LoginForm
             {
                 Visible = true
             };
-            
+
         }
-        private void logoutBtn_Click(object sender, EventArgs e)
+        private void LogoutBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        
     }
 }

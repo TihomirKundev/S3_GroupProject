@@ -81,7 +81,7 @@ namespace ProjectS07group4.FormPanels
             this.updateScheduleBtn.TabIndex = 118;
             this.updateScheduleBtn.Text = "Update";
             this.updateScheduleBtn.UseVisualStyleBackColor = true;
-            this.updateScheduleBtn.Click += new System.EventHandler(this.updateScheduleBtn_Click);
+            this.updateScheduleBtn.Click += new System.EventHandler(this.UpdateScheduleBtn_Click);
             // 
             // Job
             // 
@@ -100,7 +100,7 @@ namespace ProjectS07group4.FormPanels
             this.createScheduleBtn.TabIndex = 117;
             this.createScheduleBtn.Text = "Create";
             this.createScheduleBtn.UseVisualStyleBackColor = true;
-            this.createScheduleBtn.Click += new System.EventHandler(this.createScheduleBtn_Click);
+            this.createScheduleBtn.Click += new System.EventHandler(this.CreateScheduleBtn_Click);
             // 
             // label14
             // 
@@ -120,7 +120,7 @@ namespace ProjectS07group4.FormPanels
             this.deleteScheduleBtn.TabIndex = 116;
             this.deleteScheduleBtn.Text = "Delete";
             this.deleteScheduleBtn.UseVisualStyleBackColor = true;
-            this.deleteScheduleBtn.Click += new System.EventHandler(this.deleteScheduleBtn_Click);
+            this.deleteScheduleBtn.Click += new System.EventHandler(this.DeleteScheduleBtn_Click);
             // 
             // UserIDCB
             // 
@@ -141,7 +141,7 @@ namespace ProjectS07group4.FormPanels
             this.updateSchedule.Text = "Update";
             this.updateSchedule.UseVisualStyleBackColor = true;
             this.updateSchedule.Visible = false;
-            this.updateSchedule.Click += new System.EventHandler(this.updateSchedule_Click);
+            this.updateSchedule.Click += new System.EventHandler(this.UpdateSchedule_Click);
             // 
             // apartmentIDCB
             // 
@@ -163,7 +163,7 @@ namespace ProjectS07group4.FormPanels
             this.addScheduleBtn.Text = "Add";
             this.addScheduleBtn.UseVisualStyleBackColor = true;
             this.addScheduleBtn.Visible = false;
-            this.addScheduleBtn.Click += new System.EventHandler(this.addScheduleBtn_Click);
+            this.addScheduleBtn.Click += new System.EventHandler(this.AddScheduleBtn_Click);
             // 
             // label15
             // 
@@ -243,11 +243,13 @@ namespace ProjectS07group4.FormPanels
             this.tableInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableInfo.Location = new System.Drawing.Point(0, 0);
             this.tableInfo.Name = "tableInfo";
+            this.tableInfo.ReadOnly = true;
             this.tableInfo.RowHeadersVisible = false;
             this.tableInfo.RowHeadersWidth = 62;
             this.tableInfo.RowTemplate.Height = 28;
             this.tableInfo.Size = new System.Drawing.Size(1129, 264);
             this.tableInfo.TabIndex = 0;
+            this.tableInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ScheduleForUserInfo);
             this.tableInfo.Click += new System.EventHandler(this.OnClick);
             // 
             // SchedulesPanel

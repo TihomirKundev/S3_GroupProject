@@ -15,9 +15,10 @@ namespace ProjectS07group4.FormPanels
             adminApartment = new AdminApartment();
             tableInfo.DataSource = adminApartment.AllApartments;
             this.studentAuthority = studentAuthority;
+           
         }
 
-        private void createApBtn_Click(object sender, EventArgs e)
+        private void CreateApBtn_Click(object sender, EventArgs e)
         {
             createApartmentBtn.Visible = true;
             updateApartmentBtn.Visible = false;
@@ -38,7 +39,8 @@ namespace ProjectS07group4.FormPanels
         }
         private void UpdateApartmentInfo()
         {
-            List<String> copy = adminApartment.ApartmentDataInfo(adminApartment.AllApartments[GetIndex()].ID);
+            List<String> copy = adminApartment.ApartmentDataInfo(
+                adminApartment.GetApartment(adminApartment.AllApartments[GetIndex()].ID));
             idTxtBox.Text = copy[0];
             addressAp.Text = copy[1];
             priceNumeric.Value = Decimal.Parse(copy[2]);
@@ -47,7 +49,7 @@ namespace ProjectS07group4.FormPanels
             bedroomsComboBox.Text = copy[5];
             roomsQuantity.Text = copy[6];
         }
-        private void updateApDataBtn_Click(object sender, EventArgs e)
+        private void UpdateApDataBtn_Click(object sender, EventArgs e)
         {
             createApartmentBtn.Visible = false;
             updateApartmentBtn.Visible = true;
@@ -55,7 +57,7 @@ namespace ProjectS07group4.FormPanels
         }
 
      
-        private void createApartmentBtn_Click(object sender, EventArgs e)
+        private void CreateApartmentBtn_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(addressAp.Text) && priceNumeric.Value != 0 &&
              !String.IsNullOrEmpty(propertyTypeComboBox.Text) && !String.IsNullOrEmpty(interiorComboBox.Text) &&
@@ -98,7 +100,7 @@ namespace ProjectS07group4.FormPanels
             else
                 MessageBox.Show($"The quantity of rooms should be more than {quantityOfRooms - 1}", "Error");
         }
-        private void updateApartmentBtn_Click(object sender, EventArgs e)
+        private void UpdateApartmentBtn_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(addressAp.Text) && priceNumeric.Value != 0 &&
              !String.IsNullOrEmpty(propertyTypeComboBox.Text) && !String.IsNullOrEmpty(interiorComboBox.Text) &&
@@ -109,11 +111,12 @@ namespace ProjectS07group4.FormPanels
             else
                 MessageBox.Show("Please fill all fields", "Error some field are empty");
         }
-        private void deleteApBtn_Click(object sender, EventArgs e)
+        private void DeleteApBtn_Click(object sender, EventArgs e)
         {
             if (tableInfo.Rows.Count > 0)
             {
-                adminApartment.DeleteApartmentData(Convert.ToInt32(tableInfo.Rows[tableInfo.CurrentRow.Index].Cells[0].Value));
+                DeleteAllInformationAboutApartment(adminApartment.GetApartment(Convert.ToInt32(tableInfo.Rows[tableInfo.CurrentRow.Index].Cells[0].Value)));
+                adminApartment.DeleteApartmentData(adminApartment.GetApartment(Convert.ToInt32(tableInfo.Rows[tableInfo.CurrentRow.Index].Cells[0].Value)));
                 tableInfo.DataSource = null;
                 tableInfo.DataSource = adminApartment.AllApartments;
                 MessageBox.Show($"You successfully deleted this apartment");
@@ -126,6 +129,35 @@ namespace ProjectS07group4.FormPanels
         {
             UpdateApartmentInfo();
 
+        }
+
+        private void AllUsersInApartment(object sender, DataGridViewCellEventArgs e)
+        {
+            string info = null;
+            foreach (Users x in studentAuthority.AllUsersData)
+            {
+                if (x.UserApartmentID == Convert.ToInt32(tableInfo.Rows[GetIndex()].Cells[0].Value))
+                {
+                    info = info + $"ID: {x.ID}, Username: {x.UserEmail} " + System.Environment.NewLine;
+                }
+            }
+            if (info != null)
+                MessageBox.Show(info, "People that life in this apartment");
+            else
+                MessageBox.Show("Apartment is empty");
+        }
+
+        private void DeleteAllInformationAboutApartment(Apartment apartment)
+        {
+            foreach (Users x in studentAuthority.AllUsersData)
+            {
+                if (x.UserApartmentID == apartment.ID)
+                {
+                    x.UpdateUser(x.UserEmail, x.UserPassword, 0);
+                }
+                x.UserAgreements.Clear();
+                x.UserSchedule.Clear();
+            }
         }
     }
 }

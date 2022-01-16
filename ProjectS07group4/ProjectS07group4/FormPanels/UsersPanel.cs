@@ -5,8 +5,8 @@ namespace ProjectS07group4.FormPanels
 {
     public partial class UsersPanel : Form
     {
-        StudentAuthority studentAuthority;
-        AdminApartment adminApartment;
+        private StudentAuthority studentAuthority;
+        private AdminApartment adminApartment;
 
         public UsersPanel(StudentAuthority users)
         {
@@ -35,12 +35,12 @@ namespace ProjectS07group4.FormPanels
             userAddApartment.DataSource = adminApartment.AddApartmentIDstoComboBox(studentAuthority.AllUsersData);
             availableApartments.DataSource = userAddApartment.DataSource;
         }
-        private void createUserDataBtn_Click(object sender, EventArgs e)
+        private void CreateUserDataBtn_Click(object sender, EventArgs e)
         {
             createUserBtn.Visible = true;
             updateUserBtn.Visible = false;
         }
-        private void updateUserDataBtn_Click(object sender, EventArgs e)
+        private void UpdateUserDataBtn_Click(object sender, EventArgs e)
         {
             createUserBtn.Visible = false;
             updateUserBtn.Visible = true;
@@ -76,9 +76,9 @@ namespace ProjectS07group4.FormPanels
 
                 }
             }
-               
+
         }
-        private void createUserBtn_Click(object sender, EventArgs e)
+        private void CreateUserBtn_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
 
@@ -86,13 +86,18 @@ namespace ProjectS07group4.FormPanels
                 !String.IsNullOrEmpty(userAddApartment.Text))
             {
                 string email = firstName.Text.Substring(0, 1) + "." + secondName.Text + "@studentHousing.mail";
-                string password = studentAuthority.GeneratePassword(rnd.Next(7, 12));
-                int apartment = Convert.ToInt32(userAddApartment.Text);
-                studentAuthority.CreateUser(email, password, apartment);
-                tableInfo.DataSource = null;
-                tableInfo.DataSource = studentAuthority.AllUsersData;
-                MessageBox.Show("Succesfully added");
-                CreateUserAddAvailableApartment();
+                if (studentAuthority.CheckForDuplicateEmails(email) == false)
+                {
+                    string password = studentAuthority.GeneratePassword(rnd.Next(7, 12));
+                    int apartment = Convert.ToInt32(userAddApartment.Text);
+                    studentAuthority.CreateUser(email, password, apartment);
+                    tableInfo.DataSource = null;
+                    tableInfo.DataSource = studentAuthority.AllUsersData;
+                    MessageBox.Show("Succesfully added");
+                    CreateUserAddAvailableApartment();
+                }
+                else
+                    MessageBox.Show("This email already exists try changing it.");
 
             }
             else
@@ -101,7 +106,7 @@ namespace ProjectS07group4.FormPanels
             }
 
         }
-        private void updateUserBtn_Click(object sender, EventArgs e)
+        private void UpdateUserBtn_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(studentAuthority.AllUsersData[GetIndex()].ID);
             string email = Convert.ToString(studentAuthority.AllUsersData[GetIndex()].UserEmail);
@@ -141,7 +146,7 @@ namespace ProjectS07group4.FormPanels
                     MessageBox.Show("There is no available apartments");
             }
         }
-        private void deleteUserDataBtn_Click(object sender, EventArgs e)
+        private void DeleteUserDataBtn_Click(object sender, EventArgs e)
         {
             adminSettings.Stop();
             createUserBtn.Visible = false;
@@ -153,7 +158,7 @@ namespace ProjectS07group4.FormPanels
                 tableInfo.DataSource = null;
                 tableInfo.DataSource = studentAuthority.AllUsersData;
                 CreateUserAddAvailableApartment();
-                
+
                 MessageBox.Show("Successfully deleted");
             }
             else
@@ -164,8 +169,19 @@ namespace ProjectS07group4.FormPanels
 
 
 
+
         #endregion
 
-    
+        private void ShowApartmentInfo2Click(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach(Apartment x in adminApartment.AllApartments)
+            {
+                if (x.ID == Convert.ToInt32(tableInfo.Rows[GetIndex()].Cells[3].Value))
+                {
+                    MessageBox.Show($"Address: {x.Address}, Price: {x.Price}, {x.PropertyType}, {x.Interior}, Available rooms: {x.RoomsInApartment-adminApartment.QuantityOfRooms(x, studentAuthority.AllUsersData)}");
+                    break;
+                }
+            }
+        }
     }
 }

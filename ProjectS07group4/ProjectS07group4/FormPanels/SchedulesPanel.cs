@@ -7,9 +7,8 @@ namespace ProjectS07group4.FormPanels
 {
     public partial class SchedulesPanel : Form
     {
-        StudentAuthority studentAuthority;
-        AdminApartment adminApartment;
-
+        private StudentAuthority studentAuthority;
+        private AdminApartment adminApartment;
 
         public SchedulesPanel(StudentAuthority users)
         {
@@ -23,7 +22,7 @@ namespace ProjectS07group4.FormPanels
         private int GetIndex()
         {
             int rc = -1;
-            if (this.Visible == true)
+            if (this.Visible == true & tableInfo.Rows.Count >0)
                 rc = tableInfo.CurrentCell.RowIndex;
             return rc;
         }
@@ -43,12 +42,11 @@ namespace ProjectS07group4.FormPanels
         }
         private void AddApartmentIds()
         {
-            /* ------------------------------------------- NZ-------------------*/
             apartmentIDCB.Items.Clear();
             foreach (Apartment x in adminApartment.AllApartments)
                 apartmentIDCB.Items.Add(x.ID);
         }
-        private void createScheduleBtn_Click(object sender, EventArgs e)
+        private void CreateScheduleBtn_Click(object sender, EventArgs e)
         {
             updateSchedule.Visible = false;
             apartmentIDCB.Enabled = true;
@@ -67,7 +65,7 @@ namespace ProjectS07group4.FormPanels
                 UserIDCB.Items.Add("Empty apartment");
         }
 
-        private void updateScheduleBtn_Click(object sender, EventArgs e)
+        private void UpdateScheduleBtn_Click(object sender, EventArgs e)
         {
             UpdateScheduleInfo();
             addScheduleBtn.Visible = false;
@@ -76,7 +74,7 @@ namespace ProjectS07group4.FormPanels
             updateSchedule.Visible = true;
         }
 
-        private void addScheduleBtn_Click(object sender, EventArgs e)
+        private void AddScheduleBtn_Click(object sender, EventArgs e)
         {
             
                 if (!String.IsNullOrEmpty(apartmentIDCB.Text) && !String.IsNullOrEmpty(UserIDCB.Text) && !String.IsNullOrEmpty(DayCB.Text))
@@ -96,7 +94,7 @@ namespace ProjectS07group4.FormPanels
                 else
                     MessageBox.Show("Please fill all fields");
         }
-        private void updateSchedule_Click(object sender, EventArgs e)
+        private void UpdateSchedule_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(apartmentIDCB.Text) && !String.IsNullOrEmpty(UserIDCB.Text) && !String.IsNullOrEmpty(DayCB.Text) &&
            !String.IsNullOrEmpty(Job.Text))
@@ -116,7 +114,7 @@ namespace ProjectS07group4.FormPanels
             }
         }
 
-        private void deleteScheduleBtn_Click(object sender, EventArgs e)
+        private void DeleteScheduleBtn_Click(object sender, EventArgs e)
         {
             if (tableInfo.Rows.Count > 0)
             {
@@ -134,6 +132,19 @@ namespace ProjectS07group4.FormPanels
             if (updateSchedule.Visible == true)
                 UpdateScheduleInfo();
 
+        }
+
+        private void ScheduleForUserInfo(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach(Users x in studentAuthority.AllUsersData)
+            {
+                if(tableInfo.Rows.Count > 0)
+                if(x.ID == Convert.ToInt32(tableInfo.Rows[GetIndex()].Cells[2].Value) )
+                {
+                    MessageBox.Show($"ID:{x.ID}, Username: {x.UserEmail}, ApartmentID: {x.UserApartmentID}", $"Day: {tableInfo.Rows[GetIndex()].Cells[3].Value}, Job: {tableInfo.Rows[GetIndex()].Cells[3].Value}");
+                    break;
+                }
+            }
         }
     }
 }

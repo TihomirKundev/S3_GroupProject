@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectS07group4
+﻿namespace ProjectS07group4
 {
     public class Schedule
     {
@@ -19,6 +13,11 @@ namespace ProjectS07group4
             this.ID = ID;
             this.ApartmentID = apartmentID;
             this.UserID = userID;
+            this.Day = day;
+            this.Job = job;
+        }
+        public void UpdateSchedule(string day,string job)
+        {
             this.Day = day;
             this.Job = job;
         }
