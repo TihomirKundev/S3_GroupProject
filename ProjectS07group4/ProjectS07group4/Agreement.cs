@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjectS07group4
+﻿namespace ProjectS07group4
 {
     public class Agreement
     {
@@ -12,7 +6,6 @@ namespace ProjectS07group4
         public string CreatedUserID { get; private set; }
         protected internal int ApartmentID { get; private set; }
         protected internal string AgreementForUserID { get; private set; }
-
         public string AgreementText { get; private set; }
         public string Process { get; private set; }
         public string StartDate { get; private set; }

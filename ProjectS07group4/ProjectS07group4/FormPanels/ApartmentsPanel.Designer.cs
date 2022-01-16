@@ -66,11 +66,13 @@ namespace ProjectS07group4.FormPanels
             this.tableInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableInfo.Location = new System.Drawing.Point(3, 3);
             this.tableInfo.Name = "tableInfo";
+            this.tableInfo.ReadOnly = true;
             this.tableInfo.RowHeadersVisible = false;
             this.tableInfo.RowHeadersWidth = 62;
             this.tableInfo.RowTemplate.Height = 28;
             this.tableInfo.Size = new System.Drawing.Size(1067, 341);
             this.tableInfo.TabIndex = 98;
+            this.tableInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AllUsersInApartment);
             this.tableInfo.Click += new System.EventHandler(this.OnClick);
             // 
             // apartmentPanel
@@ -132,7 +134,7 @@ namespace ProjectS07group4.FormPanels
             this.updateApartmentBtn.Text = "Update";
             this.updateApartmentBtn.UseVisualStyleBackColor = true;
             this.updateApartmentBtn.Visible = false;
-            this.updateApartmentBtn.Click += new System.EventHandler(this.updateApartmentBtn_Click);
+            this.updateApartmentBtn.Click += new System.EventHandler(this.UpdateApartmentBtn_Click);
             // 
             // deleteApBtn
             // 
@@ -142,7 +144,7 @@ namespace ProjectS07group4.FormPanels
             this.deleteApBtn.TabIndex = 130;
             this.deleteApBtn.Text = "Delete";
             this.deleteApBtn.UseVisualStyleBackColor = true;
-            this.deleteApBtn.Click += new System.EventHandler(this.deleteApBtn_Click);
+            this.deleteApBtn.Click += new System.EventHandler(this.DeleteApBtn_Click);
             // 
             // label10
             // 
@@ -186,7 +188,7 @@ namespace ProjectS07group4.FormPanels
             this.updateApDataBtn.TabIndex = 128;
             this.updateApDataBtn.Text = "Update";
             this.updateApDataBtn.UseVisualStyleBackColor = true;
-            this.updateApDataBtn.Click += new System.EventHandler(this.updateApDataBtn_Click);
+            this.updateApDataBtn.Click += new System.EventHandler(this.UpdateApDataBtn_Click);
             // 
             // priceNumeric
             // 
@@ -226,7 +228,7 @@ namespace ProjectS07group4.FormPanels
             this.createApBtn.TabIndex = 127;
             this.createApBtn.Text = "Create";
             this.createApBtn.UseVisualStyleBackColor = true;
-            this.createApBtn.Click += new System.EventHandler(this.createApBtn_Click);
+            this.createApBtn.Click += new System.EventHandler(this.CreateApBtn_Click);
             // 
             // label6
             // 
@@ -256,7 +258,7 @@ namespace ProjectS07group4.FormPanels
             this.createApartmentBtn.TabIndex = 125;
             this.createApartmentBtn.Text = "Add";
             this.createApartmentBtn.UseVisualStyleBackColor = true;
-            this.createApartmentBtn.Click += new System.EventHandler(this.createApartmentBtn_Click);
+            this.createApartmentBtn.Click += new System.EventHandler(this.CreateApartmentBtn_Click);
             // 
             // label7
             // 

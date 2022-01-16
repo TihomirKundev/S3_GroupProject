@@ -58,7 +58,7 @@ namespace ProjectS07group4.StudentPanels
             this.sendComplaint.Tag = "complaint";
             this.sendComplaint.Text = "Send Complaint";
             this.sendComplaint.UseVisualStyleBackColor = true;
-            this.sendComplaint.Click += new System.EventHandler(this.sendComplaint_Click);
+            this.sendComplaint.Click += new System.EventHandler(this.SendComplaint_Click);
             // 
             // complaintTxtBox
             // 

@@ -1,16 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using ProjectS07group4.UploadData;
-
 namespace ProjectS07group4.AdminManager
 {
-    class AdminApartment
+    public class AdminApartment : GeneralUploadData
     {
-        private readonly UploadApartmentData apartments = new UploadApartmentData();
         public List<Apartment> AllApartments { get; private set; }
         public AdminApartment()
         {
-            AllApartments = apartments.AllApartments();
+            AllApartments = apartment.AllApartments();
+        }
+        
+
+        public void DeleteComplaint(Complaint complaint)
+        {
+            foreach (Apartment x in AllApartments)
+                if (x.ID == complaint.ApartmentID)
+                    x.DeleteComplaintData(complaint.ID);
+            
+        }
+        public List<Complaint> GetAllComplaints()
+        {
+            List<Complaint> m = new List<Complaint>();
+
+            foreach (Apartment x in AllApartments)
+            {
+                if (x.apartmentComplaints.Count > 0)
+                    foreach (Complaint x2 in x.apartmentComplaints)
+                        m.Add(x2);
+            }
+            return m;
+        }
+        public Complaint GetComplaint(int id)
+        {
+            foreach (Apartment x in AllApartments)
+            {
+                foreach(Complaint x2 in x.apartmentComplaints)
+                if (x2.ID == id)
+                    return x2;
+            }
+            return null;
+        }
+        public Apartment GetApartment(int id)
+        {
+            foreach (Apartment x in AllApartments)
+            {
+                    if (x.ID == id)
+                        return x;
+            }
+            return null;
         }
         public int QuantityOfRooms(Apartment apartment, List<Users> allUsers)
         {
@@ -24,40 +62,51 @@ namespace ProjectS07group4.AdminManager
         public void AddApartmentData(string address, double price, string propertyType, string interior,
         int bedrooms, int roomsInApartment)
         {
-            apartments.ModifyUserApartment("Insert", 0, address, price, propertyType, interior, bedrooms, roomsInApartment);
-            AllApartments.Add(apartments.AllApartments()[AllApartments.Count]);
+            apartment.ModifyUserApartment("Insert", 0, address, price, propertyType, interior, bedrooms, roomsInApartment);
+            AllApartments.Add(apartment.AllApartments()[AllApartments.Count]);
         }
         public void UpdateApartmentData(int id, string address, double price, string propertyType, string interior,
            int bedrooms, int roomsInApartment)
         {
-            Apartment updateA = new Apartment(id, address, price, propertyType, interior, bedrooms, roomsInApartment);
-            int apartmentI = 0;
             for (int i = 0; i < AllApartments.Count; i++)
             {
                 if (AllApartments[i].ID == id)
                 {
-                    apartmentI = i;
+                    AllApartments[i].UpdateApartment(address, price, propertyType, interior, bedrooms, roomsInApartment);
                     break;
                 }
             }
-            AllApartments[apartmentI] = updateA;
-            apartments.ModifyUserApartment("Update", id, address, price, propertyType, interior, bedrooms, roomsInApartment);
+            apartment.ModifyUserApartment("Update", id, address, price, propertyType, interior, bedrooms, roomsInApartment);
         }
-        public void DeleteApartmentData(int id)
+        
+        public void DeleteApartmentData(Apartment apartmentInfo)
         {
             for (int i = 0; i < AllApartments.Count; i++)
             {
-                if (AllApartments[i].ID == id)
+                if (AllApartments[i].ID == apartmentInfo.ID)
+                {
+                    foreach (Complaint x in AllApartments[i].apartmentComplaints)
+                    {
+                        complaint.DeleteComplainMessages(x);
+                    }
+                    users.UpdateUserApartmentToNull(apartmentInfo);
+                    agreement.DeleteAgreementData(apartmentInfo);
+                    schedule.DeleteScheduleData(apartmentInfo);
                     AllApartments.RemoveAt(i);
+                    break;
+                }
             }
-            apartments.ModifyUserApartment("Delete", id, "", 0, "", "", 0, 0);
+
+            apartment.ModifyUserApartment("Delete", apartmentInfo.ID, "", 0, "", "", 0, 0);
+
         }
-        private bool CheckQuantityOfApartment(int id, int quantity, List<Users> AllUsers)
+   
+        private bool CheckQuantityOfApartment(Apartment apartmentInfo, int quantity, List<Users> AllUsers)
         {
             bool check = false;
             int count = 0;
             foreach (Users x in AllUsers)
-                if (x.UserApartmentID == id)
+                if (x.UserApartmentID == apartmentInfo.ID)
                     count++;
 
             if (count < quantity)
@@ -70,16 +119,16 @@ namespace ProjectS07group4.AdminManager
 
             for (int i = 0; i < AllApartments.Count; i++)
             {
-                if (CheckQuantityOfApartment(AllApartments[i].ID, AllApartments[i].RoomsInApartment,AllUsers) == true)
+                if (CheckQuantityOfApartment(GetApartment(AllApartments[i].ID), AllApartments[i].RoomsInApartment, AllUsers) == true)
                     items.Add(AllApartments[i].ID);
             }
             return items;
         }
-        public List<String> ApartmentDataInfo(int apartmentID)
+        public List<String> ApartmentDataInfo(Apartment apartmentInfo)
         {
             List<string> str = new List<string>();
             for (int i = 0; i < AllApartments.Count; i++)
-                if (AllApartments[i].ID == apartmentID)
+                if (AllApartments[i].ID == apartmentInfo.ID)
                 {
                     str.Add(AllApartments[i].ID.ToString());
                     str.Add(AllApartments[i].Address);

@@ -114,7 +114,7 @@ namespace ProjectS07group4.StudentPanels
             this.sendAgreement.Text = "Send the agreement";
             this.sendAgreement.UseVisualStyleBackColor = true;
             this.sendAgreement.Visible = false;
-            this.sendAgreement.Click += new System.EventHandler(this.sendAgreement_Click);
+            this.sendAgreement.Click += new System.EventHandler(this.SendAgreement_Click);
             // 
             // agreementTxtBox
             // 
@@ -169,7 +169,7 @@ namespace ProjectS07group4.StudentPanels
             this.iApproveBtn.Text = "I approve";
             this.iApproveBtn.UseVisualStyleBackColor = true;
             this.iApproveBtn.Visible = false;
-            this.iApproveBtn.Click += new System.EventHandler(this.iApproveBtn_Click);
+            this.iApproveBtn.Click += new System.EventHandler(this.IApproveBtn_Click);
             // 
             // agrForUserBtn
             // 
@@ -179,7 +179,7 @@ namespace ProjectS07group4.StudentPanels
             this.agrForUserBtn.TabIndex = 54;
             this.agrForUserBtn.Text = "Agreements for me";
             this.agrForUserBtn.UseVisualStyleBackColor = true;
-            this.agrForUserBtn.Click += new System.EventHandler(this.agrForUserBtn_Click);
+            this.agrForUserBtn.Click += new System.EventHandler(this.AgrForUserBtn_Click);
             // 
             // iDontApproveBtn
             // 
@@ -190,7 +190,7 @@ namespace ProjectS07group4.StudentPanels
             this.iDontApproveBtn.Text = "I dont approve";
             this.iDontApproveBtn.UseVisualStyleBackColor = true;
             this.iDontApproveBtn.Visible = false;
-            this.iDontApproveBtn.Click += new System.EventHandler(this.iDontApproveBtn_Click);
+            this.iDontApproveBtn.Click += new System.EventHandler(this.IDontApproveBtn_Click);
             // 
             // agrUserMadeBtn
             // 
@@ -200,7 +200,7 @@ namespace ProjectS07group4.StudentPanels
             this.agrUserMadeBtn.TabIndex = 52;
             this.agrUserMadeBtn.Text = "Agreement that i made";
             this.agrUserMadeBtn.UseVisualStyleBackColor = true;
-            this.agrUserMadeBtn.Click += new System.EventHandler(this.agrUserMadeBtn_Click);
+            this.agrUserMadeBtn.Click += new System.EventHandler(this.AgrUserMadeBtn_Click);
             // 
             // createAgrBtn
             // 
@@ -210,7 +210,7 @@ namespace ProjectS07group4.StudentPanels
             this.createAgrBtn.TabIndex = 49;
             this.createAgrBtn.Text = "Create agreement";
             this.createAgrBtn.UseVisualStyleBackColor = true;
-            this.createAgrBtn.Click += new System.EventHandler(this.createAgrBtn_Click);
+            this.createAgrBtn.Click += new System.EventHandler(this.CreateAgrBtn_Click);
             // 
             // AgreementsPanel
             // 

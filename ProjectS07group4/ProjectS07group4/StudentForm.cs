@@ -11,7 +11,7 @@ namespace ProjectS07group4
             InitializeComponent();
             this.user = user;
         }
-        private void changeData(Form panel)
+        private void ChangeData(Form panel)
         {
             showData.Controls.Clear();
             panel.TopLevel = false;
@@ -20,23 +20,23 @@ namespace ProjectS07group4
             panel.FormBorderStyle = FormBorderStyle.None;
             panel.Show();
         }
-        private void homePage(object sender, EventArgs e)
+        private void HomePage(object sender, EventArgs e)
         {
-            changeData(new HomePagePanel(user));
+            ChangeData(new HomePagePanel(user));
         }
-        private void makeComplaintBtn_Click(object sender, EventArgs e)
+        private void MakeComplaintBtn_Click(object sender, EventArgs e)
         {
-            changeData(new MakeComplaintPanel(user));
+            ChangeData(new MakeComplaintPanel(user));
 
         }
-        private void myScheduleBtn_Click(object sender, EventArgs e)
+        private void MyScheduleBtn_Click(object sender, EventArgs e)
         {
-            changeData(new SchedulePanel(user));
+            ChangeData(new SchedulePanel(user));
 
         }
-        private void agreementsBtn_Click(object sender, EventArgs e)
+        private void AgreementsBtn_Click(object sender, EventArgs e)
         {
-            changeData(new AgreementsPanel(user));
+            ChangeData(new AgreementsPanel(user));
         }
         private void ClosingForm(object sender, FormClosingEventArgs e)
         {

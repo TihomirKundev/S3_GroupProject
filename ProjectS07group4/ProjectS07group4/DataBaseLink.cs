@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectS07group4
 {
-    class DataBaseLink
+    public class DataBaseLink
     {
         protected internal string getLink()
         {

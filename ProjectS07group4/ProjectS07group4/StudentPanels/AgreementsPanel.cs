@@ -28,7 +28,7 @@ namespace ProjectS07group4.StudentPanels
             iDontApproveBtn.Visible = check;
             iApproveBtn.Visible = check;
         }
-        private void createAgrBtn_Click(object sender, EventArgs e)
+        private void CreateAgrBtn_Click(object sender, EventArgs e)
         {
             ShowApproveDontApprove(false);
             tableInfo.DataSource = null;
@@ -54,19 +54,19 @@ namespace ProjectS07group4.StudentPanels
             tableInfo.Columns.Remove("ID");
          
         }
-        private void agrUserMadeBtn_Click(object sender, EventArgs e)
+        private void AgrUserMadeBtn_Click(object sender, EventArgs e)
         {
             ShowApproveDontApprove(false);
             ShowCreateAgreement(false);
             ShowAgreementsUserMade();
         }
-        private void agrForUserBtn_Click(object sender, EventArgs e)
+        private void AgrForUserBtn_Click(object sender, EventArgs e)
         {
             ShowApproveDontApprove(true);
             ShowCreateAgreement(false);
             ShowAgreementsForUser();
         }
-        private void sendAgreement_Click(object sender, EventArgs e)
+        private void SendAgreement_Click(object sender, EventArgs e)
         {
             string startDate = startAndEndAgreement.SelectionRange.Start.Year + "-" + startAndEndAgreement.SelectionRange.Start.Month + "-" + startAndEndAgreement.SelectionRange.Start.Day;
             string endDate = startAndEndAgreement.SelectionRange.End.Year + "-" + startAndEndAgreement.SelectionRange.End.Month + "-" + startAndEndAgreement.SelectionRange.End.Day;
@@ -107,7 +107,7 @@ namespace ProjectS07group4.StudentPanels
                 check = true;
             return check;
         }
-        private void iApproveBtn_Click(object sender, EventArgs e)
+        private void IApproveBtn_Click(object sender, EventArgs e)
         {
             if (CheckDataTableProcess() == true)
             {
@@ -116,6 +116,7 @@ namespace ProjectS07group4.StudentPanels
                 string agreement = user.GetAgreementsForUser[GetIndex()].AgreementText;
                 string startDate = user.GetAgreementsForUser[GetIndex()].StartDate;
                 string endDate = user.GetAgreementsForUser[GetIndex()].EndDate;
+                
                 user.ApproveDontApproveAgreement(new Agreement(id, createdUserID, agreement, "Approved", startDate, endDate));
                 tableInfo.DataSource = null;
                 tableInfo.DataSource = user.GetAgreementsForUser;
@@ -125,7 +126,7 @@ namespace ProjectS07group4.StudentPanels
             else
                 MessageBox.Show("The process is already Approved/Not approved you cannot change it!", "Error");
         }
-        private void iDontApproveBtn_Click(object sender, EventArgs e)
+        private void IDontApproveBtn_Click(object sender, EventArgs e)
         {
             if (CheckDataTableProcess() == true)
             {

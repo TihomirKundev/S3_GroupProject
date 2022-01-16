@@ -29,25 +29,25 @@ namespace ProjectS07group4
         /// </summary>
         private void InitializeComponent()
         {
-            this.usersBtn = new System.Windows.Forms.Button();
+            this.UsersBtn = new System.Windows.Forms.Button();
             this.showData = new System.Windows.Forms.Panel();
-            this.userAndApartmentBtn = new System.Windows.Forms.Button();
-            this.apartmentsBtn = new System.Windows.Forms.Button();
+            this.UserAndApartmentBtn = new System.Windows.Forms.Button();
+            this.ApartmentsBtn = new System.Windows.Forms.Button();
             this.logoutBtn = new System.Windows.Forms.Button();
-            this.complaintBtn = new System.Windows.Forms.Button();
-            this.scheduleBtn = new System.Windows.Forms.Button();
+            this.ComplaintBtn = new System.Windows.Forms.Button();
+            this.ScheduleBtn = new System.Windows.Forms.Button();
             this.agreementsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // usersBtn
+            // UsersBtn
             // 
-            this.usersBtn.Location = new System.Drawing.Point(22, 80);
-            this.usersBtn.Name = "usersBtn";
-            this.usersBtn.Size = new System.Drawing.Size(129, 43);
-            this.usersBtn.TabIndex = 0;
-            this.usersBtn.Text = "Users";
-            this.usersBtn.UseVisualStyleBackColor = true;
-            this.usersBtn.Click += new System.EventHandler(this.usersBtn_Click);
+            this.UsersBtn.Location = new System.Drawing.Point(22, 80);
+            this.UsersBtn.Name = "UsersBtn";
+            this.UsersBtn.Size = new System.Drawing.Size(129, 43);
+            this.UsersBtn.TabIndex = 0;
+            this.UsersBtn.Text = "Users";
+            this.UsersBtn.UseVisualStyleBackColor = true;
+            this.UsersBtn.Click += new System.EventHandler(this.UsersBtn_Click);
             // 
             // showData
             // 
@@ -56,25 +56,25 @@ namespace ProjectS07group4
             this.showData.Size = new System.Drawing.Size(1128, 561);
             this.showData.TabIndex = 1;
             // 
-            // userAndApartmentBtn
+            // UserAndApartmentBtn
             // 
-            this.userAndApartmentBtn.Location = new System.Drawing.Point(22, 214);
-            this.userAndApartmentBtn.Name = "userAndApartmentBtn";
-            this.userAndApartmentBtn.Size = new System.Drawing.Size(129, 65);
-            this.userAndApartmentBtn.TabIndex = 2;
-            this.userAndApartmentBtn.Text = "Users and apartment";
-            this.userAndApartmentBtn.UseVisualStyleBackColor = true;
-            this.userAndApartmentBtn.Click += new System.EventHandler(this.userAndApartmentBtn_Click);
+            this.UserAndApartmentBtn.Location = new System.Drawing.Point(22, 214);
+            this.UserAndApartmentBtn.Name = "UserAndApartmentBtn";
+            this.UserAndApartmentBtn.Size = new System.Drawing.Size(129, 65);
+            this.UserAndApartmentBtn.TabIndex = 2;
+            this.UserAndApartmentBtn.Text = "Users and apartment";
+            this.UserAndApartmentBtn.UseVisualStyleBackColor = true;
+            this.UserAndApartmentBtn.Click += new System.EventHandler(this.UserAndApartmentBtn_Click);
             // 
-            // apartmentsBtn
+            // ApartmentsBtn
             // 
-            this.apartmentsBtn.Location = new System.Drawing.Point(22, 149);
-            this.apartmentsBtn.Name = "apartmentsBtn";
-            this.apartmentsBtn.Size = new System.Drawing.Size(129, 43);
-            this.apartmentsBtn.TabIndex = 3;
-            this.apartmentsBtn.Text = "Apartments";
-            this.apartmentsBtn.UseVisualStyleBackColor = true;
-            this.apartmentsBtn.Click += new System.EventHandler(this.apartmentsBtn_Click);
+            this.ApartmentsBtn.Location = new System.Drawing.Point(22, 149);
+            this.ApartmentsBtn.Name = "ApartmentsBtn";
+            this.ApartmentsBtn.Size = new System.Drawing.Size(129, 43);
+            this.ApartmentsBtn.TabIndex = 3;
+            this.ApartmentsBtn.Text = "Apartments";
+            this.ApartmentsBtn.UseVisualStyleBackColor = true;
+            this.ApartmentsBtn.Click += new System.EventHandler(this.ApartmentsBtn_Click);
             // 
             // logoutBtn
             // 
@@ -84,27 +84,27 @@ namespace ProjectS07group4
             this.logoutBtn.TabIndex = 0;
             this.logoutBtn.Text = "Log out";
             this.logoutBtn.UseVisualStyleBackColor = true;
-            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            this.logoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
-            // complaintBtn
+            // ComplaintBtn
             // 
-            this.complaintBtn.Location = new System.Drawing.Point(22, 302);
-            this.complaintBtn.Name = "complaintBtn";
-            this.complaintBtn.Size = new System.Drawing.Size(129, 45);
-            this.complaintBtn.TabIndex = 0;
-            this.complaintBtn.Text = "Complaints";
-            this.complaintBtn.UseVisualStyleBackColor = true;
-            this.complaintBtn.Click += new System.EventHandler(this.complaintBtn_Click);
+            this.ComplaintBtn.Location = new System.Drawing.Point(22, 302);
+            this.ComplaintBtn.Name = "ComplaintBtn";
+            this.ComplaintBtn.Size = new System.Drawing.Size(129, 45);
+            this.ComplaintBtn.TabIndex = 0;
+            this.ComplaintBtn.Text = "Complaints";
+            this.ComplaintBtn.UseVisualStyleBackColor = true;
+            this.ComplaintBtn.Click += new System.EventHandler(this.ComplaintBtn_Click);
             // 
-            // scheduleBtn
+            // ScheduleBtn
             // 
-            this.scheduleBtn.Location = new System.Drawing.Point(22, 369);
-            this.scheduleBtn.Name = "scheduleBtn";
-            this.scheduleBtn.Size = new System.Drawing.Size(129, 45);
-            this.scheduleBtn.TabIndex = 4;
-            this.scheduleBtn.Text = "Schedules";
-            this.scheduleBtn.UseVisualStyleBackColor = true;
-            this.scheduleBtn.Click += new System.EventHandler(this.scheduleBtn_Click);
+            this.ScheduleBtn.Location = new System.Drawing.Point(22, 369);
+            this.ScheduleBtn.Name = "ScheduleBtn";
+            this.ScheduleBtn.Size = new System.Drawing.Size(129, 45);
+            this.ScheduleBtn.TabIndex = 4;
+            this.ScheduleBtn.Text = "Schedules";
+            this.ScheduleBtn.UseVisualStyleBackColor = true;
+            this.ScheduleBtn.Click += new System.EventHandler(this.ScheduleBtn_Click);
             // 
             // agreementsBtn
             // 
@@ -114,37 +114,37 @@ namespace ProjectS07group4
             this.agreementsBtn.TabIndex = 5;
             this.agreementsBtn.Text = "Agreements";
             this.agreementsBtn.UseVisualStyleBackColor = true;
-            this.agreementsBtn.Click += new System.EventHandler(this.agreementsBtn_Click);
+            this.agreementsBtn.Click += new System.EventHandler(this.AgreementsBtn_Click);
             // 
-            // AdminFormTest
+            // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1306, 575);
             this.Controls.Add(this.agreementsBtn);
-            this.Controls.Add(this.scheduleBtn);
-            this.Controls.Add(this.complaintBtn);
+            this.Controls.Add(this.ScheduleBtn);
+            this.Controls.Add(this.ComplaintBtn);
             this.Controls.Add(this.logoutBtn);
-            this.Controls.Add(this.apartmentsBtn);
-            this.Controls.Add(this.userAndApartmentBtn);
+            this.Controls.Add(this.ApartmentsBtn);
+            this.Controls.Add(this.UserAndApartmentBtn);
             this.Controls.Add(this.showData);
-            this.Controls.Add(this.usersBtn);
-            this.Name = "AdminFormTest";
+            this.Controls.Add(this.UsersBtn);
+            this.Name = "AdminForm";
             this.Text = "AdminFormTest";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closeForm);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseForm);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button usersBtn;
+        private System.Windows.Forms.Button UsersBtn;
         private System.Windows.Forms.Panel showData;
-        private System.Windows.Forms.Button userAndApartmentBtn;
-        private System.Windows.Forms.Button apartmentsBtn;
+        private System.Windows.Forms.Button UserAndApartmentBtn;
+        private System.Windows.Forms.Button ApartmentsBtn;
         private System.Windows.Forms.Button logoutBtn;
-        private System.Windows.Forms.Button complaintBtn;
-        private System.Windows.Forms.Button scheduleBtn;
+        private System.Windows.Forms.Button ComplaintBtn;
+        private System.Windows.Forms.Button ScheduleBtn;
         private System.Windows.Forms.Button agreementsBtn;
     }
 }

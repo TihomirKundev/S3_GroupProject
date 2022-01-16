@@ -155,11 +155,23 @@ namespace ProjectS07group4.FormPanels
                 MessageBox.Show("There is no data");
         }
 
+        private void ShowApartmentInfo2Click(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Apartment x in adminApartment.AllApartments)
+            {
+                if (x.ID == Convert.ToInt32(tableInfo.Rows[GetIndex()].Cells[3].Value))
+                {
+                    MessageBox.Show($"Address: {x.Address}, Price: {x.Price}, {x.PropertyType}, {x.Interior}, Available rooms: {x.RoomsInApartment - adminApartment.QuantityOfRooms(x, studentAuthority.AllUsersData)}");
+                    break;
+                }
+            }
+        }
+
 
 
 
         #endregion
 
-    
+
     }
 }
