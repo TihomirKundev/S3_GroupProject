@@ -135,5 +135,17 @@ namespace ProjectS07group4.FormPanels
                 UpdateScheduleInfo();
 
         }
+
+        private void ScheduleForUserInfo(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Users x in studentAuthority.AllUsersData)
+            {
+                if (x.ID == Convert.ToInt32(tableInfo.Rows[GetIndex()].Cells[2].Value))
+                {
+                    MessageBox.Show($"ID:{x.ID}, Username: {x.UserEmail}, ApartmentID: {x.UserApartmentID}", $"Day: {tableInfo.Rows[GetIndex()].Cells[3].Value}, Job: {tableInfo.Rows[GetIndex()].Cells[3].Value}");
+                    break;
+                }
+            }
+        }
     }
 }
