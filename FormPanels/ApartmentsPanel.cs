@@ -127,5 +127,21 @@ namespace ProjectS07group4.FormPanels
             UpdateApartmentInfo();
 
         }
+
+        private void AllUsersInApartment(object sender, DataGridViewCellEventArgs e)
+        {
+            string info = null;
+            foreach (Users x in studentAuthority.AllUsersData)
+            {
+                if (x.UserApartmentID == Convert.ToInt32(tableInfo.Rows[GetIndex()].Cells[0].Value))
+                {
+                    info = info + $"ID: {x.ID}, Username: {x.UserEmail} " + System.Environment.NewLine;
+                }
+            }
+            if (info != null)
+                MessageBox.Show(info, "People that life in this apartment");
+            else
+                MessageBox.Show("Apartment is empty");
+        }
     }
 }
